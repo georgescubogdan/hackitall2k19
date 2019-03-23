@@ -13,6 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 import { SafeUrlPipe } from './utils/safe-url.pipe';
+import { RequestFormComponent } from './request-form/request-form.component';
+import { DonationFormComponent } from './donation-form/donation-form.component';
+import { SentDonationsComponent } from './sent-donations/sent-donations.component';
+import { RecivedDonationsComponent } from './recived-donations/recived-donations.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { SafeUrlPipe } from './utils/safe-url.pipe';
     CameraViewComponent,
     LoginComponent,
     RegisterComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    RequestFormComponent,
+    DonationFormComponent,
+    SentDonationsComponent,
+    RecivedDonationsComponent
   ],
   imports: [
     BrowserModule,
