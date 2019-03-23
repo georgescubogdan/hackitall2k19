@@ -1,3 +1,12 @@
-<p>
-  donation-form works!
-</p>
+<div class="browser-default flow-text donation-form">
+  <form class="" [formGroup]="donationForm" (ngSubmit)="onSubmit()" *ngIf="donationForm">     
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Category" formControlName="category" name="category">
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{category}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Search donation requests</button>
+  </form>
+</div>

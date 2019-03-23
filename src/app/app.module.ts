@@ -36,6 +36,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
     SentDonationsComponent,
     RecivedDonationsComponent
   ],
+  entryComponents: [
+    RequestFormComponent,
+    DonationFormComponent
+  ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
