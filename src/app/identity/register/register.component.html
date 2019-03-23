@@ -112,7 +112,7 @@
             [errorStateMatcher]="matcher">
         </mat-form-field>
         <mat-form-field class="desktop-width">
-          <input matInput placeholder="Id" formControlName="id"
+          <input matInput placeholder="PIN" formControlName="id"
             [errorStateMatcher]="matcher">
         </mat-form-field>
       </div>
@@ -161,6 +161,8 @@
             <input matInput placeholder="Number" formControlName="streetNumber"
               [errorStateMatcher]="matcher">
           </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center" >
           <mat-form-field class="min-width">
             <input matInput placeholder="Building" formControlName="building"
               [errorStateMatcher]="matcher">
@@ -172,7 +174,7 @@
           <mat-form-field class="min-width">
             <input matInput placeholder="Appartment" formControlName="appartment"
               [errorStateMatcher]="matcher">
-          </mat-form-field>
+          </mat-form-field>          
         </div>
         <div fxLayout="row" fxLayoutAlign="space-around center" >
           <mat-form-field class="desktop-width">
