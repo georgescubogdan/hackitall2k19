@@ -4,6 +4,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router';
 import { IdentityService } from '../identity.service';
 import { MatSnackBar } from '@angular/material';
+import { DataService } from 'src/app/utils/data.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -32,10 +33,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private identityService: IdentityService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private dataService: DataService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({'email': this.emailFormControl, 'password': this.passwordFormControl});
+    this.dataService.getCentre().subscribe(a => console.log(a));
   }
 
   handleLogin(promise: Promise<any>) {
