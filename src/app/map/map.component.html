@@ -37,12 +37,12 @@
   <mat-expansion-panel *ngFor="let center of centers">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        test
+        {{center.centerName}}
         <!-- Data: {{donation.date | date : "dd.MM.yyyy"}} -->
       </mat-panel-title>
       <mat-panel-description>
-        test
-        <!-- {{donation.sender}} -->
+        <a [href]="'tel:' + center.phone">Tel: {{center.phone}}</a>
+        <a [href]="'mailto:' + center.email">Email: {{center.email}}</a>
       </mat-panel-description>
       <button mat-raised-button color="primary" (click)="openDialog(center.lat, center.lon)">Directions</button>
       <button mat-raised-button color="primary">Donate 2%</button>
