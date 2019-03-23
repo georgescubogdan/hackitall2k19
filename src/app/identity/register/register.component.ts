@@ -88,7 +88,29 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm);
+      const response = {
+        center: this.registerForm.get('center').value,
+        email: this.registerForm.get('email').value,
+        password: this.registerForm.get('password').value,
+        name: this.registerForm.get('name').value,
+        surname: this.registerForm.get('surname').value,
+        id: this.registerForm.get('id').value,
+        fatherInitial: this.registerForm.get('fatherInitial').value,
+        phone: this.registerForm.get('phone').value,
+        fax: this.registerForm.get('fax').value,
+        street: this.registerForm.get('street').value,
+        streetNumber: this.registerForm.get('streetNumber').value,
+        building: this.registerForm.get('building').value,
+        block: this.registerForm.get('block').value,
+        appartment: this.registerForm.get('appartment').value,
+        city: this.registerForm.get('city').value,
+        county: this.registerForm.get('county').value,
+        country: this.registerForm.get('country').value,
+        postalCode: this.registerForm.get('postalCode').value,
+        centerName: this.registerForm.get('centerName').value,
+        iban: this.registerForm.get('iban').value,
+        fic: this.registerForm.get('fic').value,
+      };
     }
   }
 
