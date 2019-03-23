@@ -25,6 +25,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { DonationConcludeComponent } from './donation-conclude/donation-conclude.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
+import { QrDialogComponent } from './qr-dialog/qr-dialog.component';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc",
@@ -48,11 +50,13 @@ const firebaseConfig = {
     SentDonationsComponent,
     RecivedDonationsComponent,
     DonationConcludeComponent,
-    MapComponent
+    MapComponent,
+    QrDialogComponent
   ],
   entryComponents: [
     RequestFormComponent,
-    DonationFormComponent
+    DonationFormComponent,
+    QrDialogComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -68,7 +72,8 @@ const firebaseConfig = {
       // please get your own API key here:
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
       apiKey: 'AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc'
-    })
+    }),
+    NgxQRCodeModule
   ],
   providers: [
     IdentityService,
