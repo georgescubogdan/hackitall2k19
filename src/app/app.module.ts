@@ -61,7 +61,8 @@ const firebaseConfig = {
     RequestFormComponent,
     DonationFormComponent,
     QrDialogComponent,
-    ReceivedDonationFormComponent
+    ReceivedDonationFormComponent,
+    EditProfileComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),

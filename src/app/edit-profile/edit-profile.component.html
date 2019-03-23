@@ -1,3 +1,83 @@
-<p>
-  edit-profile works!
-</p>
+<div class="browser-default register-form">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="registerForm">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Name" formControlName="name"
+          [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Surname" formControlName="surname"
+          [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Id" formControlName="id"
+          [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <mat-form-field class="full-width" *ngIf="!user.center">
+        <input matInput placeholder="Father initial" formControlName="fatherInitial"
+          [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Phone" formControlName="phone"
+          [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Fax (optional)" formControlName="fax"
+          [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <div>
+        <mat-label>Address</mat-label>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Street" formControlName="street"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Number" formControlName="streetNumber"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Building" formControlName="building"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Block" formControlName="block"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Appartment" formControlName="appartment"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="City" formControlName="city"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="County" formControlName="county"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Country" formControlName="country"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Postal code" formControlName="postalCode"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+      <div *ngIf="user.center">
+        <mat-label>Center details</mat-label>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Name" formControlName="centerName"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="IBAN" formControlName="iban"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Fical code" formControlName="fic"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+      <button mat-raised-button type="submit"  color="primary">Edit</button>
+    </form>
+</div>

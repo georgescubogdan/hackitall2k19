@@ -10,6 +10,7 @@ import { DataService } from '../utils/data.service';
 import { DonationRequest } from '../models/donation-request';
 import { RequestFormComponent } from '../request-form/request-form.component';
 import { ReceivedDonationFormComponent } from '../received-donation-form/received-donation-form.component';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 
 @Component({
   selector: 'app-sent-donations',
@@ -73,7 +74,7 @@ export class SentDonationsComponent implements OnInit {
   }
 
   edit() {
-    this.bottomSheet.open(RegisterComponent);
+    this.bottomSheet.open(EditProfileComponent);
   }
 
   donate() {
