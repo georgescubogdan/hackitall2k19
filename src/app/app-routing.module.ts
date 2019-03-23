@@ -6,6 +6,8 @@ import { RecivedDonationsComponent } from './recived-donations/recived-donations
 import { SentDonationsComponent } from './sent-donations/sent-donations.component';
 import { DonationFormComponent } from './donation-form/donation-form.component';
 import { RegisterComponent } from './identity/register/register.component';
+import { DonationConcludeComponent } from './donation-conclude/donation-conclude.component';
+import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,6 +27,14 @@ const routes: Routes = [
   {
     path: 'sentDonation',
     component: SentDonationsComponent
+  },
+  {
+    path: 'test',
+    component: DonationConcludeComponent
+  },
+  {
+    path: 'testmap',
+    component: MapComponent
   }
 ];
 
