@@ -28,6 +28,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
 import { QrDialogComponent } from './qr-dialog/qr-dialog.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc",
@@ -53,7 +54,8 @@ const firebaseConfig = {
     ReceivedDonationFormComponent,
     DonationConcludeComponent,
     MapComponent,
-    QrDialogComponent
+    QrDialogComponent,
+    EditProfileComponent
   ],
   entryComponents: [
     RequestFormComponent,

@@ -1,3 +1,12 @@
 mat-card-content {
     text-align: left;
 }
+
+.title {
+    font-size: 25px;
+}
+
+mat-expansion-panel {
+    text-align: left;
+    background: #880E4F;
+}

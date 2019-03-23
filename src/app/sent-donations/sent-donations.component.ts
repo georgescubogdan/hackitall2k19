@@ -7,6 +7,9 @@ import { User } from '../identity/user';
 import { Router } from '@angular/router';
 import { RegisterComponent } from '../identity/register/register.component';
 import { DataService } from '../utils/data.service';
+import { DonationRequest } from '../models/donation-request';
+import { RequestFormComponent } from '../request-form/request-form.component';
+import { ReceivedDonationFormComponent } from '../received-donation-form/received-donation-form.component';
 
 @Component({
   selector: 'app-sent-donations',
@@ -53,12 +56,19 @@ export class SentDonationsComponent implements OnInit {
     private router: Router
   ) { }
 
-  user: User;
+  user: User = null;
+  requests: DonationRequest[] = [];
 
   ngOnInit() {
     this.identityService.user.subscribe(user => {
       this.user = user;
       console.log(this.user);
+      if (user) {
+        this.dataService.getDonationRequests(user.email).subscribe(requests => {
+          this.requests = requests;
+          console.log(this.requests);
+        });
+      }
     });
   }
 
@@ -68,6 +78,15 @@ export class SentDonationsComponent implements OnInit {
 
   donate() {
     this.router.navigate(['centers']);
+  }  
+
+  createRequest() {
+    this.bottomSheet.open(RequestFormComponent);
   }
+
+  addReceivedDonation() {
+    this.bottomSheet.open(ReceivedDonationFormComponent);
+  }
+
 
 }

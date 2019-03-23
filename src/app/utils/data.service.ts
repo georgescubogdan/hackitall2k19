@@ -23,6 +23,7 @@ export class DataService {
     private db: AngularFireDatabase
   ){
     this._centreSubject = new ReplaySubject(1);
+    this._requestsSubject = new ReplaySubject(1);
   }
 
   
