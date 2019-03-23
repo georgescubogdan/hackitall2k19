@@ -22,6 +22,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment.prod';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ReceivedDonationFormComponent } from './received-donation-form/received-donation-form.component';
 import { DonationConcludeComponent } from './donation-conclude/donation-conclude.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
@@ -49,6 +50,7 @@ const firebaseConfig = {
     DonationFormComponent,
     SentDonationsComponent,
     RecivedDonationsComponent,
+    ReceivedDonationFormComponent,
     DonationConcludeComponent,
     MapComponent,
     QrDialogComponent
@@ -56,7 +58,8 @@ const firebaseConfig = {
   entryComponents: [
     RequestFormComponent,
     DonationFormComponent,
-    QrDialogComponent
+    QrDialogComponent,
+    ReceivedDonationFormComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),

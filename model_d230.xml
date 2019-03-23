@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form1>
+   <body1>
+      <Header>
+         <universalCode>D230_A1.0.0</universalCode>
+         <an_r>2019</an_r>
+         <d_rec>0</d_rec>
+         <luna_r>3</luna_r>
+         <totalPlata_A>0</totalPlata_A>
+      </Header>
+      <ident_contrib>
+         <ID_NUME>{surname}</ID_NUME>
+         <ID_INITIALA>{fatherInitial}</ID_INITIALA>
+         <ID_PRENUME>{name}</ID_PRENUME>
+         <cif>{id}</cif>
+         <ID_STRADA>{street}</ID_STRADA>
+         <ID_NR>{streetnumber}</ID_NR>
+         <ID_BL>{building}</ID_BL>
+         <ID_SC>{block}</ID_SC>
+         <ID_ET/>
+         <ID_AP>{appartment}</ID_AP>
+         <ID_LOCALIT>{city}</ID_LOCALIT>
+         <ID_COD_POSTAL>{postalCode}</ID_COD_POSTAL>
+         <ID_TEL>{phone}</ID_TEL>
+         <ID_FAX>{fax}</ID_FAX>
+         <ID_EMAIL>{email}</ID_EMAIL>
+         <ID_JUDET>{county}</ID_JUDET>
+         <AP_FOCUS />
+         <ID_SECTOR />
+      </ident_contrib>
+      <repet1>
+         <seq1>1</seq1>
+         <sal_pensii>
+            <bifa_sal>1</bifa_sal>
+            <bifa_pens />
+         </sal_pensii>
+         <destinatia_sumei>
+            <Bursa_privata />
+            <S_bursa>
+               <D_DOC_PLATA />
+               <D_CONTRACT_NR />
+               <D_SUMA_PLATITA />
+            </S_bursa>
+            <S_entit>
+               <D_CIF_ENTIT>{cif_dest}</D_CIF_ENTIT>
+               <ENTIT_IBAN>{iban_dest}</ENTIT_IBAN>
+               <ENTIT_SUMA />
+               <D_DENUMIRE_ENTIT>{den}</D_DENUMIRE_ENTIT>
+               <cota>1</cota>
+            </S_entit>
+            <Entitate>1</Entitate>
+         </destinatia_sumei>
+      </repet1>
+      <repet2 xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/" xfa:dataNode="dataGroup" />
+      <ident_rep_fiscal>
+         <F_NUME />
+         <F_CIF />
+         <F_TEL />
+         <F_FAX />
+         <F_EMAIL />
+         <F_JUDET />
+         <box_submit xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/" xfa:dataNode="dataGroup" />
+         <F_COD_POSTAL />
+         <F_BL />
+         <F_NR />
+         <F_STRADA />
+         <F_AP />
+         <F_SC />
+         <F_LOCALIT />
+         <F_SECTOR />
+      </ident_rep_fiscal>
+   </body1>
+</form1>

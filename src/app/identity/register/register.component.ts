@@ -76,16 +76,28 @@ export class RegisterComponent implements OnInit {
     // });
 
     this.registerForm.get('center').valueChanges.subscribe(value => {
+      console.log(value);
       if (value === true) {
-        this.registerForm.get('fatherInitial').setValidators([Validators.pattern('[A-Z]')]);
+        console.log('here')
+        this.registerForm.get('fatherInitial').clearValidators();
+        this.registerForm.get('fatherInitial').updateValueAndValidity();
         this.registerForm.get('centerName').setValidators([Validators.required]);
+        this.registerForm.get('centerName').updateValueAndValidity();
         this.registerForm.get('iban').setValidators([Validators.required]);
+        this.registerForm.get('iban').updateValueAndValidity();
         this.registerForm.get('fic').setValidators([Validators.required]);
+        this.registerForm.get('fic').updateValueAndValidity();
+        this.registerForm.updateValueAndValidity();
       } else {
         this.registerForm.get('fatherInitial').setValidators([Validators.required, Validators.pattern('[A-Z]')]);
         this.registerForm.get('centerName').clearValidators();
         this.registerForm.get('iban').clearValidators();
         this.registerForm.get('fic').clearValidators();
+        this.registerForm.get('fatherInitial').updateValueAndValidity();
+        this.registerForm.get('centerName').updateValueAndValidity();
+        this.registerForm.get('iban').updateValueAndValidity();
+        this.registerForm.get('fic').updateValueAndValidity();
+        this.registerForm.updateValueAndValidity();
       }
     });
   }
@@ -96,6 +108,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.registerForm.updateValueAndValidity();
     if (this.registerForm.valid) {
       const response = {
         center: this.registerForm.get('center').value,

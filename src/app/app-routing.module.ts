@@ -25,7 +25,7 @@ const routes: Routes = [
     component: MapComponent
   },
   { path: 'received-donations', component: RecivedDonationsComponent },
-  { path: 'sent-donations', component: SentDonationsComponent }
+  { path: 'profile', component: SentDonationsComponent }
 ];
 
 @NgModule({

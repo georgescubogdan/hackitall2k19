@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Donation } from '../models/donation';
 import { MatBottomSheet } from '@angular/material';
 import { RequestFormComponent } from '../request-form/request-form.component';
+import { ReceivedDonationFormComponent } from '../received-donation-form/received-donation-form.component';
 
 @Component({
   selector: 'app-recived-donations',
@@ -37,6 +38,10 @@ export class RecivedDonationsComponent implements OnInit {
 
   openBottomSheet() {
     this.bottomSheet.open(RequestFormComponent);
+  }
+
+  openBottomSheet2() {
+    this.bottomSheet.open(ReceivedDonationFormComponent);
   }
 
 }
