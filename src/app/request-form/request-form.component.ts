@@ -109,6 +109,7 @@ export class RequestFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.items);
+    
   }
 
 }

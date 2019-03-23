@@ -124,5 +124,10 @@ export class ReceivedDonationFormComponent implements OnInit {
   onSubmit() {
     console.log(this.items);
     console.log(this.user);
+    const response = {
+      from: this.user,
+      items: this.items,
+      date: new Date()
+    };
   }
 }
