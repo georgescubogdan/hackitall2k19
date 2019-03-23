@@ -9,6 +9,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CameraViewComponent } from './camera/camera-view/camera-view.component';
 import { LoginComponent } from './identity/login/login.component';
 import { RegisterComponent } from './identity/register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpClientModule } from '@angular/common/http';
+import { SafeUrlPipe } from './utils/safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,18 @@ import { RegisterComponent } from './identity/register/register.component';
     NavBarComponent,
     CameraViewComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    FlexLayoutModule 
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
