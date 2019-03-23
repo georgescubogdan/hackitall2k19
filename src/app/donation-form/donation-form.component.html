@@ -1,12 +1,36 @@
-<div class="browser-default flow-text donation-form">
+<div class="browser-default donation-form">
   <form class="" [formGroup]="donationForm" (ngSubmit)="onSubmit()" *ngIf="donationForm">     
-      <mat-form-field class="full-width">
-        <mat-select placeholder="Category" formControlName="category" name="category">
-          <mat-option *ngFor="let category of categories" [value]="category">
-            {{category}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Category" formControlName="category" name="category">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category.toUpperCase()}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" *ngIf="category === 'clothes'">
+      <mat-select placeholder="Sex" formControlName="sex" name="sex">
+        <mat-option *ngFor="let sex of sexes" [value]="sex">
+          {{sex.toUpperCase()}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" *ngIf="category === 'clothes'">
+      <mat-select placeholder="Size" formControlName="clothSize" name="clothSize">
+        <mat-option *ngFor="let clothSize of clothSizes" [value]="clothSize.value">
+          {{clothSize.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" *ngIf="category === 'food'">
+      <mat-select placeholder="Type" formControlName="foodType" name="foodType">
+        <mat-option *ngFor="let foodType of foodTypes" [value]="foodType">
+          {{foodType.toUpperCase()}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" *ngIf="category === 'meds'">
+      <input matInput placeholder="Name" formControlName="medName" type="medName">
+    </mat-form-field>
     <button mat-raised-button type="submit" color="primary">Search donation requests</button>
   </form>
 </div>
