@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Donation } from '../models/donation';
 import { MatBottomSheet } from '@angular/material';
 import { DonationFormComponent } from '../donation-form/donation-form.component';
+import { IdentityService } from '../identity/identity.service';
+import { User } from '../identity/user';
+import { Router } from '@angular/router';
+import { RegisterComponent } from '../identity/register/register.component';
+import { DataService } from '../utils/data.service';
 
 @Component({
   selector: 'app-sent-donations',
   templateUrl: './sent-donations.component.html',
-  styleUrls: ['./sent-donations.component.sass']
+  styleUrls: ['./sent-donations.component.css']
 })
 export class SentDonationsComponent implements OnInit {
   panelOpenState = false;
@@ -41,13 +46,28 @@ export class SentDonationsComponent implements OnInit {
       ],
     }];
 
-  constructor(private bottomSheet: MatBottomSheet) { }
+  constructor(
+    private bottomSheet: MatBottomSheet,
+    private identityService: IdentityService,
+    private dataService: DataService,
+    private router: Router
+  ) { }
+
+  user: User;
 
   ngOnInit() {
+    this.identityService.user.subscribe(user => {
+      this.user = user;
+      console.log(this.user);
+    });
   }
 
-  openBottomSheet() {
-    this.bottomSheet.open(DonationFormComponent);
+  edit() {
+    this.bottomSheet.open(RegisterComponent);
+  }
+
+  donate() {
+    this.router.navigate(['centers']);
   }
 
 }
