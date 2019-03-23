@@ -161,7 +161,7 @@ export class DataService {
               </ident_rep_fiscal>
            </body1>
         </form1>`, { 
-          responseType: 'blob',
+          responseType: "blob",
           headers: new HttpHeaders({'Content-Type': 'application/text'})
         }).toPromise().then(a => {
           console.log(a);
