@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({'email': this.emailFormControl, 'password': this.passwordFormControl});
-    this.dataService.getCentre().subscribe(a => console.log(a));
+    // this.dataService.getPDF().then(a => console.log(a));
   }
 
   handleLogin(promise: Promise<any>) {
