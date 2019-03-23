@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatBottomSheetRef } from '@angular/material';
 
 @Component({
   selector: 'app-donation-form',
@@ -53,7 +54,7 @@ export class DonationFormComponent implements OnInit {
     'medName': new FormControl(null)
   });
 
-  constructor() { }
+  constructor(private bottomSheetRef: MatBottomSheetRef<DonationFormComponent>) { }
 
   ngOnInit() {
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Donation } from '../models/donation';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseItem } from '../models/base-item';
+import { MatBottomSheetRef } from '@angular/material';
 
 @Component({
   selector: 'app-request-form',
@@ -59,7 +60,8 @@ export class RequestFormComponent implements OnInit {
   
   items = [];
 
-  constructor() { }
+  constructor(
+    private bottomSheetRef: MatBottomSheetRef<RequestFormComponent>) { }
 
   ngOnInit() {
   }
