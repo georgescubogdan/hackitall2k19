@@ -41,7 +41,7 @@ export class IdentityService {
       const provider = new firebase.auth.GoogleAuthProvider();
       const promise = this.afAuth.auth.signInWithPopup(provider);
       promise.then(credential =>  {
-        this.updateUser(credential.user);
+        //this.updateUser(credential.user);
       });
       return promise;
     }
@@ -113,14 +113,10 @@ export class IdentityService {
 
     /// updates database with user info after login
     /// only runs if user role is not already defined in database
-    private updateUser(authData) {
-      const userData = new User(authData);
-      const ref = this.db.object('users/' + authData.uid);
-      ref.valueChanges()
-         .subscribe(user => {
-          // if (!user.roles) {
-          //   ref.update(userData);
-          // }
+    public updateUser(authData): Promise<any> {
+      return new Promise<any>((resolve, reject) => {
+        const ref = this.db.object('users/' + authData.uid);
+        ref.update(authData).then(a => resolve(a)).catch(a => reject(a));
       });
     }
 }

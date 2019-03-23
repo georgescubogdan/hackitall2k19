@@ -87,11 +87,11 @@ export class EditProfileComponent implements OnInit {
 
       console.log(response);
 
-      this.identityService.doRegister(response).then(response => {
-        this.snackBar.open("Account created! Please wait...", "Close", {
+      this.identityService.updateUser(response).then(response => {
+        this.snackBar.open("Account updated!", "Close", {
           duration: 2000,
         });
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
       }).catch(err => {
         console.log(err);
         this.snackBar.open(err.message, "Close", {
