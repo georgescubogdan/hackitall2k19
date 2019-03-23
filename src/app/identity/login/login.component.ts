@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IdentityService } from '../identity.service';
 import { MatSnackBar } from '@angular/material';
 import { DataService } from 'src/app/utils/data.service';
+import { DonationRequest } from 'src/app/models/donation-request';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({'email': this.emailFormControl, 'password': this.passwordFormControl});
-    this.dataService.getPDF().then(a => console.log(a));
+    // this.dataService.getPDF().then(a => console.log(a));
   }
 
   handleLogin(promise: Promise<any>) {

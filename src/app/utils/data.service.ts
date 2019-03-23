@@ -84,11 +84,23 @@ export class DataService {
     }
   }
 
+  public addDonationRequests(requestData: DonationRequest): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.db.list('/requests').push(requestData).then(a => resolve(a)).catch(err => reject(err));
+    })
+  }
+
+  public addDonation(requestData: Donation): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.db.list('/donations').push(requestData).then(a => resolve(a)).catch(err => reject(err));
+    })
+  }
+
   // public get
 
   public getPDF(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post('https://reportinggen.azurewebsites.net/api/values', `<?xml version="1.0" encoding="UTF-8"?>
+      this.http.post('http://localhost:5002/api/values', `<?xml version="1.0" encoding="UTF-8"?>
         <form1>
            <body1>
               <Header>
@@ -163,9 +175,19 @@ export class DataService {
         </form1>`, { 
           responseType: "blob",
           headers: new HttpHeaders({'Content-Type': 'application/text'})
-        }).toPromise().then(a => {
-          console.log(a);
-        }).catch(a => console.log(a));
+        }).toPromise().then((response) => { // download file
+          var blob = new Blob([response], {type: 'application/pdf'});
+          const blobUrl = URL.createObjectURL(blob);
+            // const iframe = document.createElement('iframe');
+            // iframe.style.display = 'none';
+            // iframe.src = blobUrl;
+            // document.body.appendChild(iframe);
+            // iframe.contentWindow.();
+            const anchor = document.createElement('a');
+            anchor.download = `anexa.pdf`;
+            anchor.href = blobUrl;
+            anchor.click();
+      });
     });
   }
 }
