@@ -1,5 +1,13 @@
-<div class="row">
-  <div class="col s12 m12 l12">
-    <p class="flow-text">PULAA</p>
-  </div>
+<div class="container-fluid">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="loginForm">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email" formControlName="email"
+        [errorStateMatcher]="matcher">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Password" formControlName="password" type="password"
+        [errorStateMatcher]="matcher">
+    </mat-form-field>
+    <button mat-raised-button type="submit">Login</button>
+  </form>
 </div>
