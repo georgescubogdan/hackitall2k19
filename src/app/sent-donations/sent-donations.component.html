@@ -65,7 +65,7 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <div>
+    <div *ngIf="user.center && donations && donations.length"> 
       <mat-card-title>Your {{user.center ? 'received' : ''}} donations</mat-card-title>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let donation of donations">
