@@ -77,6 +77,7 @@ export class RegisterComponent implements OnInit {
 
     this.registerForm.get('center').valueChanges.subscribe(value => {
       if (value === true) {
+        this.registerForm.get('fatherInitial').clearValidators();
         this.registerForm.get('fatherInitial').setValidators([Validators.pattern('[A-Z]')]);
         this.registerForm.get('centerName').setValidators([Validators.required]);
         this.registerForm.get('iban').setValidators([Validators.required]);
