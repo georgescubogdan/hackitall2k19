@@ -23,6 +23,9 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment.prod';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ReceivedDonationFormComponent } from './received-donation-form/received-donation-form.component';
+import { DonationConcludeComponent } from './donation-conclude/donation-conclude.component';
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './map/map.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc",
@@ -46,6 +49,8 @@ const firebaseConfig = {
     SentDonationsComponent,
     RecivedDonationsComponent,
     ReceivedDonationFormComponent
+    DonationConcludeComponent,
+    MapComponent
   ],
   entryComponents: [
     RequestFormComponent,
@@ -61,7 +66,12 @@ const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      // please get your own API key here:
+      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+      apiKey: 'AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc'
+    })
   ],
   providers: [
     IdentityService,

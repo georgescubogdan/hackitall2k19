@@ -5,6 +5,8 @@ export interface Roles {
 }
 
 export class User {
+    lat?: number;
+    lon?: number;
     center: string;
     email: string;
     name: string;
@@ -25,11 +27,12 @@ export class User {
     centerName: string;
     iban: string;
     fic: string;
-    roles:    Roles;
+    roles: Roles;
     
-    
-    constructor(authData) {
-        this.email    = authData.email
-        this.roles    = { user: true }
+    constructor(authData = null) {
+        if (authData != null) {
+            this.email    = authData.email
+            this.roles    = { user: true }
+        }
     }
 }
