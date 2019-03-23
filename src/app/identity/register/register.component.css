@@ -1,0 +1,34 @@
+.full-width {
+    width: 100%;
+}
+
+.min-width {
+    width: 15%;
+}
+
+.desktop-width {
+    max-width: 50%;
+    min-width: 40%;
+}
+
+.desktop-full-width {
+    width: 80%;
+}
+
+
+mat-card {
+    min-height: 93vh;
+}
+
+.register-form {
+    min-width: 150px;
+    max-width: 900px;
+    margin: 5vh auto;
+    padding: 5vh 7vh;
+    background: #303030;
+    border-radius: 10px;
+}
+
+mat-label {
+    display: block;
+}

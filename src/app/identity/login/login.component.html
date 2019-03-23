@@ -1,13 +1,22 @@
-<div class="container-fluid">
-  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="loginForm">
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Email" formControlName="email"
-        [errorStateMatcher]="matcher">
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Password" formControlName="password" type="password"
-        [errorStateMatcher]="matcher">
-    </mat-form-field>
-    <button mat-raised-button type="submit">Login</button>
-  </form>
+<div class="container-fluid flow-text">
+  <mat-card>
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="loginForm">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Email" formControlName="email"
+          [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Password" formControlName="password" type="password"
+          [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">Login</button>
+    
+      <div class="google-btn" (click)="loginWithGoogle()">
+        <div class="google-icon-wrapper">
+          <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+        </div>
+        <p class="btn-text"><b>Sign in with google</b></p>
+      </div>
+    </form>
+  </mat-card>
 </div>

@@ -19,7 +19,6 @@ div {
 }
 
 .mat-sidenav-container{
-  background-color: lightskyblue;
   min-height: 93vh !important;
 }
 
@@ -39,7 +38,6 @@ padding: 0 14px;
 }
 
 .mat-sidenav-content{
-    font-size: 200%;
     text-align: center;
 }
 
@@ -49,23 +47,6 @@ padding: 0 14px;
     background-repeat: no-repeat;  
     background-size: cover;
     background-position: center;
-}
-
-.notification-card {
-    max-height: 3rem;
-    border-radius: 0%;
-}
-
-.notification-icon {
-    font-size: 2rem;
-}
-
-.notification-subtitle {
-    font-size: 0.5rem;
-}
-
-.notification-title {
-    font-size: 0.7rem;
 }
 
 ::ng-deep .mat-menu-content {

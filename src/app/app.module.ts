@@ -17,6 +17,11 @@ import { RequestFormComponent } from './request-form/request-form.component';
 import { DonationFormComponent } from './donation-form/donation-form.component';
 import { SentDonationsComponent } from './sent-donations/sent-donations.component';
 import { RecivedDonationsComponent } from './recived-donations/recived-donations.component';
+import { IdentityService } from './identity/identity.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment.prod';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -32,6 +37,7 @@ import { RecivedDonationsComponent } from './recived-donations/recived-donations
     RecivedDonationsComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
@@ -41,7 +47,11 @@ import { RecivedDonationsComponent } from './recived-donations/recived-donations
     DragDropModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    IdentityService,
+    AngularFireAuth,
+    AngularFireDatabase
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
