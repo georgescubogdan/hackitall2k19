@@ -23,6 +23,15 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment.prod';
 import { AngularFireDatabase } from 'angularfire2/database';
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc",
+  authDomain: "hackitall2k19.firebaseapp.com",
+  databaseURL: "https://hackitall2k19.firebaseio.com",
+  projectId: "hackitall2k19",
+  storageBucket: "hackitall2k19.appspot.com",
+  messagingSenderId: "789959980201"
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +50,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
     DonationFormComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
     BrowserModule,
     AppRoutingModule,
     MaterialModule,

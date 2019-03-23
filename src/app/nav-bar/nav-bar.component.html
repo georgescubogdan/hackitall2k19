@@ -9,13 +9,14 @@
     <!-- <span class="welcome" *ngIf="email" fxHide.gt-sm="true">{{email}}</span> -->
     <!-- <span class="welcome" *ngIf="email" fxHide.lt-md="true">Hello, {{email}}!</span> -->
     <span class="fill-remaining-space"></span>
-    <!-- <mat-icon fxHide.gt-sm="true" (click)="logout()" *ngIf="email">meeting_room </mat-icon> -->
+    <mat-icon fxHide.gt-sm="true" (click)="logout()" *ngIf="authStatus">meeting_room </mat-icon>
     
     <div fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLink="/login">Login</a>
       <a mat-button routerLink="/register">Register</a>
       <a mat-button routerLink="/received-donations">Received Donations</a>
       <a mat-button routerLink="/sent-donations">Sent Donations</a>
+      <a mat-button (click)="logout()" *ngIf="authStatus">Sign Out</a>
       <!-- <a mat-button routerLink="/charts">Charts</a>
       <a mat-button routerLink="/about">About</a> -->
       <!-- <button mat-raised-button (click)="logout()" *ngIf="email">Logout</button> -->

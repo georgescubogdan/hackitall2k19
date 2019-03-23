@@ -5,13 +5,31 @@ export interface Roles {
 }
 
 export class User {
-    email:    string;
-    photoURL: string;
+    center: string;
+    email: string;
+    name: string;
+    surname: string;
+    id: string;
+    fatherInitial: string;
+    phone: string;
+    fax: string;
+    street: string;
+    streetNumber: string;
+    building: string;
+    block: string;
+    appartment: string;
+    city: string;
+    county: string;
+    country: string;
+    postalCode: string;
+    centerName: string;
+    iban: string;
+    fic: string;
     roles:    Roles;
+    
     
     constructor(authData) {
         this.email    = authData.email
-        this.photoURL = authData.photoURL
         this.roles    = { user: true }
     }
 }

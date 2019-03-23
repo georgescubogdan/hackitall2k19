@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router';
+import { IdentityService } from '../identity.service';
+import { MatSnackBar } from '@angular/material';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -37,7 +39,9 @@ export class RegisterComponent implements OnInit {
   ]);
 
   constructor(
-    private router: Router
+    private router: Router,
+    private identityService: IdentityService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -67,9 +71,9 @@ export class RegisterComponent implements OnInit {
     });
 
     // Clear validators, for dev only
-    Object.keys(this.registerForm.controls).forEach(key => {
-      this.registerForm.get(key).clearValidators();
-    });
+    // Object.keys(this.registerForm.controls).forEach(key => {
+    //   this.registerForm.get(key).clearValidators();
+    // });
 
     this.registerForm.get('center').valueChanges.subscribe(value => {
       if (value === true) {
@@ -116,6 +120,18 @@ export class RegisterComponent implements OnInit {
         iban: this.registerForm.get('iban').value,
         fic: this.registerForm.get('fic').value,
       };
+
+      this.identityService.doRegister(response).then(response => {
+        this.snackBar.open("Account created! Please wait...", "Close", {
+          duration: 2000,
+        });
+        this.router.navigate(['/login']);
+      }).catch(err => {
+        console.log(err);
+        this.snackBar.open(err.message, "Close", {
+          duration: 2000,
+        });
+      });
     }
   }
 
