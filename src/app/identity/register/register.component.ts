@@ -66,6 +66,11 @@ export class RegisterComponent implements OnInit {
       'fic': new FormControl('', []),
     });
 
+    // Clear validators, for dev only
+    Object.keys(this.registerForm.controls).forEach(key => {
+      this.registerForm.get(key).clearValidators();
+    });
+
     this.registerForm.get('center').valueChanges.subscribe(value => {
       if (value === true) {
         this.registerForm.get('fatherInitial').setValidators([Validators.pattern('[A-Z]')]);
