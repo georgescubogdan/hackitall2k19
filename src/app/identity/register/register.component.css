@@ -3,7 +3,7 @@
 }
 
 .min-width {
-    width: 7%;
+    width: 15%;
 }
 
 .desktop-width {
@@ -27,4 +27,8 @@ mat-card {
     padding: 5vh 7vh;
     background: #303030;
     border-radius: 10px;
+}
+
+mat-label {
+    display: block;
 }
