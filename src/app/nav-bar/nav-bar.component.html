@@ -1,0 +1,40 @@
+<div> 
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+      
+    <!-- <span class="welcome" *ngIf="email" fxHide.gt-sm="true">{{email}}</span> -->
+    <!-- <span class="welcome" *ngIf="email" fxHide.lt-md="true">Hello, {{email}}!</span> -->
+    <span class="fill-remaining-space"></span>
+    <!-- <mat-icon fxHide.gt-sm="true" (click)="logout()" *ngIf="email">meeting_room </mat-icon> -->
+    
+    <div fxShow="true" fxHide.lt-md="true">
+      <!-- <a mat-button routerLink="/login" *ngIf="!email">Login</a> -->
+      <!-- <a mat-button routerLink="/register" *ngIf="!email">Register</a> -->
+      <a mat-button routerLink="/map">Map</a>
+      <a mat-button routerLink="/incidents">Incidents</a>
+      <a mat-button routerLink="/charts">Charts</a>
+      <a mat-button routerLink="/about">About</a>
+      <!-- <button mat-raised-button (click)="logout()" *ngIf="email">Logout</button> -->
+    </div>
+
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container content">
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <!-- <a mat-button routerLink="/login" *ngIf="!email">Login</a>
+        <a mat-button routerLink="/register" *ngIf="!email">Register</a> -->
+        <a mat-button routerLink="/map">Map</a>
+        <a mat-button routerLink="/incidents">Incidents</a>
+        <a mat-button routerLink="/charts">Charts</a>
+        <a mat-button routerLink="/about">About</a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

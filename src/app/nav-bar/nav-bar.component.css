@@ -1,0 +1,76 @@
+span.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+span.welcome {
+    padding-right: 5px;
+}
+
+.companyName{
+    font-size: 150%;
+}
+
+.mat-toolbar{
+  height: 7vh;
+}
+
+div {
+    overflow: inherit;
+}
+
+.mat-sidenav-container{
+  background-color: lightskyblue;
+  min-height: 93vh !important;
+}
+
+a{
+    text-decoration: none;
+    font-size: 110%;
+    white-space: normal;
+}
+
+button{
+    font-size: 110%;
+    min-width: min-content;
+}
+
+.example-icon {
+padding: 0 14px;
+}
+
+.mat-sidenav-content{
+    font-size: 200%;
+    text-align: center;
+}
+
+.content {
+    /* background-image: url("../../background.jpg"); */
+    min-height: 100vh;
+    background-repeat: no-repeat;  
+    background-size: cover;
+    background-position: center;
+}
+
+.notification-card {
+    max-height: 3rem;
+    border-radius: 0%;
+}
+
+.notification-icon {
+    font-size: 2rem;
+}
+
+.notification-subtitle {
+    font-size: 0.5rem;
+}
+
+.notification-title {
+    font-size: 0.7rem;
+}
+
+::ng-deep .mat-menu-content {
+    overflow-y: hidden !important;
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+    border-radius: 0%;
+}
