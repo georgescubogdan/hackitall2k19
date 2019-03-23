@@ -1,5 +1,7 @@
 <div class="container-fluid flow-text">
-  <mat-card>
+
+  <!-- mobile -->
+  <mat-card fxHide.gt-sm="true" fxHide.sm="true">
     <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="registerForm">
       <section class="example-section">
         <mat-checkbox class="example-margin" formControlName="center">Check to create a donation center.</mat-checkbox>
@@ -78,6 +80,120 @@
           <input matInput placeholder="Postal code" formControlName="postalCode"
             [errorStateMatcher]="matcher">
         </mat-form-field>
+      </div>
+      <div *ngIf="isCenter">
+        <mat-label>Center details</mat-label>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Name" formControlName="centerName"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="IBAN" formControlName="iban"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Fical code" formControlName="fic"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+      <button mat-raised-button type="submit"  color="primary">Register</button>
+    </form>
+  </mat-card>
+
+  <!-- desktop -->
+  <mat-card fxHide.lt-sm="true">
+    <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="registerForm">
+      <section class="example-section">
+        <mat-checkbox class="example-margin" formControlName="center">Check to create a donation center.</mat-checkbox>
+      </section>
+      <div fxLayout="row" fxLayoutAlign="space-around center" >
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Email" formControlName="email"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Id" formControlName="id"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Name" formControlName="name"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Surname" formControlName="surname"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>        
+        <mat-form-field class="min-width" *ngIf="!isCenter">
+          <input matInput placeholder="Father initial" formControlName="fatherInitial"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around center" >
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Password" formControlName="password" type="password"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Confirm Password" formControlName="confirm-password" type="password"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around center" >
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Phone" formControlName="phone"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Fax (optional)" formControlName="fax"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-label>Address</mat-label>
+        <div fxLayout="row" fxLayoutAlign="space-around center" >
+          <mat-form-field class="desktop-width">
+            <input matInput placeholder="Street" formControlName="street"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+          <mat-form-field class="min-width">
+            <input matInput placeholder="Number" formControlName="streetNumber"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+          <mat-form-field class="min-width">
+            <input matInput placeholder="Building" formControlName="building"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+          <mat-form-field class="min-width">
+            <input matInput placeholder="Block" formControlName="block"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+          <mat-form-field class="min-width">
+            <input matInput placeholder="Appartment" formControlName="appartment"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center" >
+          <mat-form-field class="desktop-width">
+            <input matInput placeholder="City" formControlName="city"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+          <mat-form-field class="desktop-width">
+            <input matInput placeholder="County" formControlName="county"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center" >
+          <mat-form-field class="desktop-width">
+            <input matInput placeholder="Country" formControlName="country"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+          <mat-form-field class="desktop-width">
+            <input matInput placeholder="Postal code" formControlName="postalCode"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+        </div>
       </div>
       <div *ngIf="isCenter">
         <mat-label>Center details</mat-label>
