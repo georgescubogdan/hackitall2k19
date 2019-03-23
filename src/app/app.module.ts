@@ -48,7 +48,7 @@ const firebaseConfig = {
     DonationFormComponent,
     SentDonationsComponent,
     RecivedDonationsComponent,
-    ReceivedDonationFormComponent
+    ReceivedDonationFormComponent,
     DonationConcludeComponent,
     MapComponent
   ],
