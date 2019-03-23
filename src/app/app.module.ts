@@ -13,6 +13,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 import { SafeUrlPipe } from './utils/safe-url.pipe';
+import { IdentityService } from './identity/identity.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment.prod';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,7 @@ import { SafeUrlPipe } from './utils/safe-url.pipe';
     SafeUrlPipe
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
@@ -33,7 +39,11 @@ import { SafeUrlPipe } from './utils/safe-url.pipe';
     DragDropModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    IdentityService,
+    AngularFireAuth,
+    AngularFireDatabase
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
