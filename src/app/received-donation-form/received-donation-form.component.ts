@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
+import { ErrorStateMatcher, MatBottomSheetRef } from '@angular/material';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -71,7 +71,7 @@ export class ReceivedDonationFormComponent implements OnInit {
   
   items = [];
 
-  constructor() { }
+  constructor(private bottomSheetRef: MatBottomSheetRef<ReceivedDonationFormComponent>) { }
 
   ngOnInit() {
   }

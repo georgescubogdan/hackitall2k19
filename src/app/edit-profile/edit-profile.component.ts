@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from '../identity/login/login.component';
 import { Router } from '@angular/router';
 import { IdentityService } from '../identity/identity.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatBottomSheetRef } from '@angular/material';
 import { DonationRequest } from '../models/donation-request';
 import { User } from '../identity/user';
 
@@ -20,7 +20,8 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private identityService: IdentityService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private bottomSheetRef: MatBottomSheetRef<EditProfileComponent>
   ) { }
 
   user: User = null;
@@ -63,7 +64,7 @@ export class EditProfileComponent implements OnInit {
   onSubmit() {
     this.registerForm.updateValueAndValidity();
     if (this.registerForm.valid) {
-      const response = {
+      const response = { 
         name: this.registerForm.get('name').value,
         surname: this.registerForm.get('surname').value,
         id: this.registerForm.get('id').value,
@@ -90,6 +91,7 @@ export class EditProfileComponent implements OnInit {
         this.snackBar.open("Account updated!", "Close", {
           duration: 2000,
         });
+        this.bottomSheetRef.dismiss();
         // this.router.navigate(['/login']);
       }).catch(err => {
         console.log(err);
