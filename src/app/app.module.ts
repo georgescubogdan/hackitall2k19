@@ -50,6 +50,10 @@ const firebaseConfig = {
     DonationConcludeComponent,
     MapComponent
   ],
+  entryComponents: [
+    RequestFormComponent,
+    DonationFormComponent
+  ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
     BrowserModule,

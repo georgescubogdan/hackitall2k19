@@ -1,4 +1,4 @@
-<div class="container-fluid flow-text">
+<div class="container-fluid">
 
   <!-- mobile -->
   <mat-card fxHide.gt-sm="true" fxHide.sm="true">
@@ -125,8 +125,8 @@
           <input matInput placeholder="Surname" formControlName="surname"
             [errorStateMatcher]="matcher">
         </mat-form-field>        
-        <mat-form-field class="min-width" *ngIf="!isCenter">
-          <input matInput placeholder="Father initial" formControlName="fatherInitial"
+        <mat-form-field class="father-init-width" *ngIf="!isCenter">
+          <input matInput placeholder="FI" formControlName="fatherInitial"
             [errorStateMatcher]="matcher">
         </mat-form-field>
       </div>
@@ -153,7 +153,7 @@
       <div>
         <mat-label>Address</mat-label>
         <div fxLayout="row" fxLayoutAlign="space-around center" >
-          <mat-form-field class="desktop-width">
+          <mat-form-field class="street-width">
             <input matInput placeholder="Street" formControlName="street"
               [errorStateMatcher]="matcher">
           </mat-form-field>
@@ -208,7 +208,7 @@
             [errorStateMatcher]="matcher">
         </mat-form-field>
         <mat-form-field class="desktop-full-width">
-          <input matInput placeholder="Fical code" formControlName="fic"
+          <input matInput placeholder="Fiscal code" formControlName="fic"
             [errorStateMatcher]="matcher">
         </mat-form-field>
       </div>

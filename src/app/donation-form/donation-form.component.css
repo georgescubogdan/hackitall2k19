@@ -1,0 +1,12 @@
+.full-width {
+  width: 100%;
+}
+
+.donation-form {
+  min-width: 150px;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 0 5vh 0 5vh;
+  font-size: auto;
+  border-radius: 10px;
+}

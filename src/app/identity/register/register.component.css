@@ -6,6 +6,14 @@
     width: 15%;
 }
 
+.father-init-width {
+    width: 3%;
+}
+
+.street-width {
+    width: 48%;
+}
+
 .desktop-width {
     max-width: 50%;
     min-width: 40%;

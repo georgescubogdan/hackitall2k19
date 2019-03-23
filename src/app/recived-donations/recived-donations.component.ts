@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Donation } from '../models/donation';
+import { MatBottomSheet } from '@angular/material';
+import { RequestFormComponent } from '../request-form/request-form.component';
 
 @Component({
   selector: 'app-recived-donations',
@@ -25,9 +27,16 @@ export class RecivedDonationsComponent implements OnInit {
       ],
     },
   ];
-  constructor() { }
+  
+  constructor(
+    private bottomSheet: MatBottomSheet
+  ) { }
 
   ngOnInit() {
+  }
+
+  openBottomSheet() {
+    this.bottomSheet.open(RequestFormComponent);
   }
 
 }
