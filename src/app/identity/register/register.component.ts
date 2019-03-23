@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      'center': new FormControl(true, []),
+      'center': new FormControl(false, []),
       'email': this.emailFormControl,
       'password': this.passwordFormControl,
       'confirm-password': this.passwordConfirmFormControl,

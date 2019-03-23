@@ -1,6 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
+.primary {
+    color: #c2185b;
+}
+
+.accent {
+    color: #b0bec5;
+}
+
+.warn {
+    color: #f44336
+}
+
+.primary-background {
+    background: #c2185b;
+}
+
+.accent-background {
+    color: #b0bec5
+}
+
+.warn-background {
+    background: #f44336;
+}
+
 *{
     padding: 0;
     margin: 0;
