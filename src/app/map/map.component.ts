@@ -9,6 +9,8 @@ import { QrDialogComponent } from '../qr-dialog/qr-dialog.component';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  ngOnInit(): void {
+  }
   // https://www.google.com/maps/dir//44.84629,24.885659/ link pt qr
   centers = [
     {
@@ -39,7 +41,9 @@ export class MapComponent implements OnInit {
       email: 'test@gmail.com'
     }
   ];
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {
+
+  }
   // google maps zoom level
   zoom = 8;
 
@@ -79,9 +83,6 @@ export class MapComponent implements OnInit {
     });
   }
 
-
-  ngOnInit() {
-  }
 
   filterRequests(email) {
     const temp = this.requests.find(r => {
