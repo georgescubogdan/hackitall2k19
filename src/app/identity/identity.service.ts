@@ -118,9 +118,9 @@ export class IdentityService {
       const ref = this.db.object('users/' + authData.uid);
       ref.valueChanges()
          .subscribe(user => {
-          if (!user.roles) {
-            ref.update(userData);
-          }
+          // if (!user.roles) {
+          //   ref.update(userData);
+          // }
       });
     }
 }
