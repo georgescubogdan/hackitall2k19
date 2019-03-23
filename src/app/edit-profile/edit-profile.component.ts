@@ -91,6 +91,7 @@ export class EditProfileComponent implements OnInit {
         this.snackBar.open("Account updated!", "Close", {
           duration: 2000,
         });
+        this.bottomSheetRef.dismiss();
         // this.router.navigate(['/login']);
       }).catch(err => {
         console.log(err);

@@ -13,7 +13,7 @@ import { User } from './user';
 export class IdentityService {
 
   user: BehaviorSubject<User> = new BehaviorSubject(null);
-
+  authId: string;
   constructor(public afAuth: AngularFireAuth,
               private db: AngularFireDatabase,
               private router: Router) {
@@ -23,6 +23,7 @@ export class IdentityService {
         switchMap(auth => {
           if (auth) {
             /// signed in
+            this.authId = auth.uid;
             return this.db.object('user/' + auth.uid).valueChanges();
           } else {
             /// not signed in
@@ -115,7 +116,7 @@ export class IdentityService {
     /// only runs if user role is not already defined in database
     public updateUser(authData): Promise<any> {
       return new Promise<any>((resolve, reject) => {
-        const ref = this.db.object('users/' + authData.uid);
+        const ref = this.db.object('user/' + this.authId);
         ref.update(authData).then(a => resolve(a)).catch(a => reject(a));
       });
     }
