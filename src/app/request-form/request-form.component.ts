@@ -3,6 +3,7 @@ import { Donation } from '../models/donation';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseItem } from '../models/base-item';
 import { MatBottomSheetRef } from '@angular/material';
+import { DataService } from '../utils/data.service';
 
 @Component({
   selector: 'app-request-form',
@@ -61,6 +62,7 @@ export class RequestFormComponent implements OnInit {
   items = [];
 
   constructor(
+    private dataService: DataService,
     private bottomSheetRef: MatBottomSheetRef<RequestFormComponent>) { }
 
   ngOnInit() {
@@ -108,8 +110,8 @@ export class RequestFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.items);
-    
+    this.dataService.addDonationRequest(this.items as BaseItem[]).then(a => {
+      this.bottomSheetRef.dismiss();
+    });
   }
-
 }
