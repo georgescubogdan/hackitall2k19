@@ -7,7 +7,7 @@ export interface Roles {
 export class User {
     lat?: number;
     lon?: number;
-    center: string;
+    center: boolean;
     email: string;
     name: string;
     surname: string;

@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Scan Me!</h1>
+<div mat-dialog-content>
+  <a [attr.href]="value">
+      <ngx-qrcode 
+      [qrc-element-type]="elementType" 
+      [qrc-value] = "value"
+      qrc-class = "aclass"
+      qrc-errorCorrectionLevel = "L">
+      </ngx-qrcode>
+  </a>
+</div>
