@@ -8,28 +8,28 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" *ngIf="category === 'clothes'">
-      <mat-select placeholder="Sex" formControlName="sex" name="sex">
+      <mat-select placeholder="Sex (optional)" formControlName="sex" name="sex">
         <mat-option *ngFor="let sex of sexes" [value]="sex">
           {{sex.toUpperCase()}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" *ngIf="category === 'clothes'">
-      <mat-select placeholder="Size" formControlName="clothSize" name="clothSize">
+      <mat-select placeholder="Size (optional)" formControlName="clothSize" name="clothSize">
         <mat-option *ngFor="let clothSize of clothSizes" [value]="clothSize.value">
           {{clothSize.label}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" *ngIf="category === 'food'">
-      <mat-select placeholder="Type" formControlName="foodType" name="foodType">
+      <mat-select placeholder="Type (optional)" formControlName="foodType" name="foodType">
         <mat-option *ngFor="let foodType of foodTypes" [value]="foodType">
           {{foodType.toUpperCase()}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" *ngIf="category === 'meds'">
-      <input matInput placeholder="Name" formControlName="medName" type="medName">
+      <input matInput placeholder="Name (optional)" formControlName="medName" type="medName">
     </mat-form-field>
     <button mat-raised-button type="submit" color="primary">Search donation requests</button>
   </form>

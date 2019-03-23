@@ -56,29 +56,6 @@ export class DonationFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.donationForm.get('category').valueChanges.subscribe(value => {
-      if (value === 'food') {
-        this.donationForm.get('foodType').setValidators(Validators.required);
-        this.donationForm.get('sex').clearValidators();
-        this.donationForm.get('clothSize').clearValidators();
-        this.donationForm.get('medName').clearValidators();
-      } else if (value === 'money' || value === 'volunteering') {
-        this.donationForm.get('foodType').clearValidators();
-        this.donationForm.get('sex').clearValidators();
-        this.donationForm.get('clothSize').clearValidators();
-        this.donationForm.get('medName').clearValidators();
-      } else if (value === 'clothes') {
-        this.donationForm.get('foodType').clearValidators();
-        this.donationForm.get('sex').setValidators(Validators.required);
-        this.donationForm.get('clothSize').setValidators(Validators.required);
-        this.donationForm.get('medName').clearValidators();
-      }  else if (value === 'meds') {
-        this.donationForm.get('foodType').clearValidators();
-        this.donationForm.get('sex').clearValidators();
-        this.donationForm.get('clothSize').clearValidators();
-        this.donationForm.get('medName').setValidators(Validators.required);
-      }
-    });
   }
 
   get category() {
