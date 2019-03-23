@@ -22,6 +22,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment.prod';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ReceivedDonationFormComponent } from './received-donation-form/received-donation-form.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc",
@@ -43,11 +44,13 @@ const firebaseConfig = {
     RequestFormComponent,
     DonationFormComponent,
     SentDonationsComponent,
-    RecivedDonationsComponent
+    RecivedDonationsComponent,
+    ReceivedDonationFormComponent
   ],
   entryComponents: [
     RequestFormComponent,
-    DonationFormComponent
+    DonationFormComponent,
+    ReceivedDonationFormComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),

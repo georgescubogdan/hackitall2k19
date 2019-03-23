@@ -1,0 +1,16 @@
+.full-width {
+  width: 100%;
+}
+
+.request-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 5vh 0 5vh;
+  font-size: auto;
+  border-radius: 10px;
+}
+
+.request {
+  margin-bottom: 10px;
+  background: #880E4F;
+}
