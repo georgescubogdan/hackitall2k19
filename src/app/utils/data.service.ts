@@ -7,6 +7,8 @@ import { isNullOrUndefined } from 'util';
 import { DonationRequest } from '../models/donation-request';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Donation } from '../models/donation';
+import { IdentityService } from '../identity/identity.service';
+import { BaseItem } from '../models/base-item';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,8 @@ export class DataService {
 
   constructor(
     private db: AngularFireDatabase,
-    private http: HttpClient
+    private http: HttpClient,
+    private identityService: IdentityService
   ){
     this._centreSubject = new ReplaySubject(1);
     this._requestsSubject = new ReplaySubject(1);
@@ -84,15 +87,15 @@ export class DataService {
     }
   }
 
-  public addDonationRequests(requestData: DonationRequest): Promise<any> {
+  public addDonationRequest(requestData: BaseItem[]): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.db.list('/requests').push(requestData).then(a => resolve(a)).catch(err => reject(err));
+      this.db.list('/requests').push({email: this.identityService.userData.email, items: requestData} as DonationRequest).then(a => resolve(a)).catch(err => reject(err));
     })
   }
 
   public addDonation(requestData: Donation): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.db.list('/donations').push(requestData).then(a => resolve(a)).catch(err => reject(err));
+      this.db.list('/donations').push({...requestData, to: this.identityService.userData.email} as Donation).then(a => resolve(a)).catch(err => reject(err));
     })
   }
 

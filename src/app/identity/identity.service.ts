@@ -13,6 +13,7 @@ import { User } from './user';
 export class IdentityService {
 
   user: BehaviorSubject<User> = new BehaviorSubject(null);
+  userData: User;
   authId: string;
   constructor(public afAuth: AngularFireAuth,
               private db: AngularFireDatabase,
@@ -31,6 +32,7 @@ export class IdentityService {
           }
         }))
         .subscribe(user => {
+          this.userData = user;
           this.user.next(user);
         });
     }
