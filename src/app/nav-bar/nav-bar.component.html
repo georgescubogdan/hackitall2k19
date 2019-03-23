@@ -14,6 +14,7 @@
     <div fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLink="/login">Login</a>
       <a mat-button routerLink="/register">Register</a>
+      <a mat-button (click)="logout()" *ngIf="authStatus">Sign Out</a>
       <!-- <a mat-button routerLink="/map">Map</a>
       <a mat-button routerLink="/incidents">Incidents</a>
       <a mat-button routerLink="/charts">Charts</a>

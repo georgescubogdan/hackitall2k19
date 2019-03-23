@@ -23,7 +23,7 @@ export class IdentityService {
         switchMap(auth => {
           if (auth) {
             /// signed in
-            return this.db.object('users/' + auth.uid).valueChanges()
+            return this.db.object('user/' + auth.uid).valueChanges()
           } else {
             /// not signed in
             return of(null)
@@ -56,51 +56,25 @@ export class IdentityService {
         this.afAuth.auth
         .signInWithEmailAndPassword(email, password)
         .then(res => {
-          // this.db.object('users/' + res.user.uid).snapshotChanges().subscribe(docSnapshot => {
-          //   if (!docSnapshot.key) {
-          //     let roles_tmp = { user: false, doctor: false, nurse: false, approved: false }
-          //     roles_tmp[role] = true;
-          //     this.db.object('users/' + res.user.uid).set({
-          //       email: email,
-          //       photoURL: "",
-          //       roles: roles_tmp
-          //     });
-          //   }});
           resolve(res);
         }, err => {
-          // loginComponent.invalidUsernameOrPassword = true;
           reject(err);
         })
       });
     }
 
     doRegister(value, additionalData = null): Promise<any>{
-      console.log(value.email);
+      const userData = value as User;
       return new Promise<any>((resolve, reject) => {
         let provider = new firebase.auth.EmailAuthProvider();
         this.afAuth.auth
         .createUserWithEmailAndPassword(value.email, value.password)
         .then(res => {
-          console.log('intra')
-          this.db.object('users/' + res.user.uid).snapshotChanges().subscribe(docSnapshot => {
+          this.db.object('user/' + res.user.uid).snapshotChanges().subscribe(docSnapshot => {
             if (!docSnapshot.key) {
               let roles_tmp = { user: false, doctor: false, nurse: false}
               roles_tmp[value.role] = true;
-              let groupRh: String = value.group + value.rh;
-              console.log(groupRh)
-              this.db.object('users/' + res.user.uid).set({
-                email: value.email,
-                photoURL: "",
-                firstName: value.firstName,
-                lastName: value.lastName,
-                roles: roles_tmp,
-                coordinates: additionalData,
-                approved: false,
-                group: value.group,
-                rh: value.rh,
-                groupRH: groupRh,
-                lastDonationDate: false                
-              });
+              this.db.object('user/' + res.user.uid).set({...value, roles: roles_tmp});
             }});
           resolve(res);
         }, err => {
@@ -122,6 +96,5 @@ export class IdentityService {
             ref.update(userData)
           }
       })
-
     }
 }
