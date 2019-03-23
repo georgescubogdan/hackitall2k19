@@ -16,10 +16,9 @@
       <a mat-button routerLink="/register">Register</a>
       <a mat-button routerLink="/received-donations">Received Donations</a>
       <a mat-button routerLink="/profile">Profile</a>
-      <a mat-button (click)="logout()" *ngIf="authStatus">Sign Out</a>
       <!-- <a mat-button routerLink="/charts">Charts</a>
       <a mat-button routerLink="/about">About</a> -->
-      <!-- <button mat-raised-button (click)="logout()" *ngIf="email">Logout</button> -->
+      <button mat-raised-button (click)="logout()" *ngIf="authStatus">Logout</button>
     </div>
 
   </mat-toolbar>
