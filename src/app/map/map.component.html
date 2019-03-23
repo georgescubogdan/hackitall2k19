@@ -1,39 +1,39 @@
 <agm-map 
-  [latitude]="lat"
-  [longitude]="lng"
-  [zoom]="zoom"
-  [disableDefaultUI]="false"
-  [zoomControl]="false"
-  (mapClick)="mapClicked($event)">
+[latitude]="lat"
+[longitude]="lng"
+[zoom]="zoom"
+[disableDefaultUI]="false"
+[zoomControl]="false"
+(mapClick)="mapClicked($event)">
 
-  <agm-marker 
-      *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, i)"
-      [latitude]="m.lat"
-      [longitude]="m.lng"
-      [label]="m.label"
-      [markerDraggable]="m.draggable"
-      (dragEnd)="markerDragEnd(m, $event)">
-      
-    <agm-info-window>
-      <strong>InfoWindow content</strong>
-    </agm-info-window>
-    
-  </agm-marker>
-  
-  <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
-      [radius]="5000"
-      [fillColor]="'red'"
-      [circleDraggable]="true"
-      [editable]="true"
-      (radiusChange)="radiusChanged($event)"
-      (dragEnd)="circleDragEnd($event)">
-  </agm-circle>
+<agm-marker 
+*ngFor="let m of markers; let i = index"
+(markerClick)="clickedMarker(m.label, i)"
+[latitude]="m.lat"
+[longitude]="m.lng"
+[label]="m.label"
+[markerDraggable]="m.draggable"
+(dragEnd)="markerDragEnd(m, $event)">
+
+<agm-info-window>
+  <strong>InfoWindow content</strong>
+</agm-info-window>
+
+</agm-marker>
+
+<agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+[radius]="5000"
+[fillColor]="'red'"
+[circleDraggable]="true"
+[editable]="true"
+(radiusChange)="radiusChanged($event)"
+(dragEnd)="circleDragEnd($event)">
+</agm-circle>
 
 </agm-map>
 
 
-<mat-accordion>
+<mat-accordion *ngIf="centers">
   <mat-expansion-panel *ngFor="let center of centers">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -47,10 +47,12 @@
       <button mat-raised-button color="primary" (click)="openDialog(center.lat, center.lon)">Directions</button>
       <button mat-raised-button color="primary">Donate 2%</button>
     </mat-expansion-panel-header>
-
-    <mat-list *ngFor="let item of filterRequests(center.email)">
-      <h6 mat-line>{{item.category}}</h6>
-      <p mat-line> {{item.description}} </p>
-    </mat-list>
+    <div *ngIf="requests">
+      <mat-list  *ngFor="let item of filterRequests(center.email)">
+        <h6 mat-line>{{item.category}}</h6>
+        <p mat-line> {{item.description}} </p>
+      </mat-list>
+    </div>
+    
   </mat-expansion-panel>
 </mat-accordion>
