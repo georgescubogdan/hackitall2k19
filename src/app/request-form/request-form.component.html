@@ -1,0 +1,53 @@
+<div class="browser-default request-form">
+    <mat-card class="request" *ngFor="let item of items; let i index">
+        <!-- <p>Request item: {{i}}</p> -->
+        <p>Category: {{item.category.toUpperCase()}}</p>
+        <p *ngIf="item.description">Description: {{item.description}}</p>
+        <p *ngIf="item.sum">Amount: {{item.sum}} RON</p>
+        <p *ngIf="item.name">Name: {{item.name}}</p>
+        <p *ngIf="item.size">Size: {{item.size}}</p>
+        <p *ngIf="item.sex">Sex: {{item.sex}}</p>
+        <p *ngIf="item.type">Type: {{item.type}}</p>
+    </mat-card>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" *ngIf="items.length">Sumbit request</button>
+    <form [formGroup]="itemForm" *ngIf="itemForm">     
+        <mat-form-field class="full-width">
+            <mat-select placeholder="Category" formControlName="category" name="category">
+                <mat-option *ngFor="let category of categories" [value]="category">
+                {{category.toUpperCase()}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Description (optional)" formControlName="description" type="description">
+        </mat-form-field>
+        <mat-form-field class="full-width" *ngIf="category === 'clothes'">
+            <mat-select placeholder="Sex (optional)" formControlName="sex" name="sex">
+                <mat-option *ngFor="let sex of sexes" [value]="sex">
+                {{sex.toUpperCase()}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width" *ngIf="category === 'clothes'">
+            <mat-select placeholder="Size (optional)" formControlName="clothSize" name="clothSize">
+                <mat-option *ngFor="let clothSize of clothSizes" [value]="clothSize.value">
+                {{clothSize.label}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width" *ngIf="category === 'food'">
+            <mat-select placeholder="Type (optional)" formControlName="foodType" name="foodType">
+                <mat-option *ngFor="let foodType of foodTypes" [value]="foodType">
+                {{foodType.toUpperCase()}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width" *ngIf="category === 'meds'">
+            <input matInput placeholder="Name (optional)" formControlName="medName" type="medName">
+        </mat-form-field>
+        <mat-form-field class="full-width" *ngIf="category === 'money'">
+            <input matInput placeholder="Amount - RON (optional)" formControlName="sum" type="sum">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addItem()">Add item</button>
+    </form>
+</div>
