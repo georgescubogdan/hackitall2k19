@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher, MatBottomSheetRef } from '@angular/material';
+import { DataService } from '../utils/data.service';
+import { BaseItem } from '../models/base-item';
+import { Donation } from '../models/donation';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -71,7 +74,10 @@ export class ReceivedDonationFormComponent implements OnInit {
   
   items = [];
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<ReceivedDonationFormComponent>) { }
+  constructor(
+    private bottomSheetRef: MatBottomSheetRef<ReceivedDonationFormComponent>,
+    private dataService: DataService
+    ) { }
 
   ngOnInit() {
   }
@@ -125,9 +131,13 @@ export class ReceivedDonationFormComponent implements OnInit {
     console.log(this.items);
     console.log(this.user);
     const response = {
-      from: this.user,
+      sender: this.user,
       items: this.items,
       date: new Date()
     };
+
+    this.dataService.addDonation(response).then(a => {
+      this.bottomSheetRef.dismiss();
+    });
   }
 }
