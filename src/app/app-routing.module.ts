@@ -25,7 +25,8 @@ const routes: Routes = [
     component: MapComponent
   },
   { path: 'received-donations', component: RecivedDonationsComponent },
-  { path: 'profile', component: SentDonationsComponent }
+  { path: 'profile', component: SentDonationsComponent },
+  { path: '**', redirectTo: 'login]' }
 ];
 
 @NgModule({

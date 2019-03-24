@@ -133,7 +133,7 @@ export class ReceivedDonationFormComponent implements OnInit {
     const response = {
       sender: this.user,
       items: this.items,
-      date: new Date()
+      date: Date.now()
     };
 
     this.dataService.addDonation(response).then(a => {

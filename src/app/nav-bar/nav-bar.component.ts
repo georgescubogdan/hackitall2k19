@@ -10,15 +10,17 @@ import { AuthorizationService } from '../authorization.service';
 })
 export class NavBarComponent implements OnInit {
   public authStatus;
-
+  public center: boolean;
   constructor(
-    private identityService: IdentityService,
+    public identityService: IdentityService,
     public authorization: AuthorizationService
   ) { }
 
   ngOnInit() {
     this.identityService.user.subscribe(userData => {
+      
       this.authStatus = userData;
+
     });
   }
 
