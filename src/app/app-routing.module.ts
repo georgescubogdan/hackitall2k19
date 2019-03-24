@@ -21,7 +21,7 @@ const routes: Routes = [
     component: DonationConcludeComponent
   },
   {
-    path: 'testmap',
+    path: 'centers',
     component: MapComponent
   },
   { path: 'received-donations', component: RecivedDonationsComponent },
