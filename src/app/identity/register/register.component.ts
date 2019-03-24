@@ -4,6 +4,8 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router';
 import { IdentityService } from '../identity.service';
 import { MatSnackBar } from '@angular/material';
+import Tesseract from 'tesseract.js';
+import { summaryFileName } from '@angular/compiler/src/aot/util';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,6 +21,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  constructor(
+    private router: Router,
+    private identityService: IdentityService,
+    private snackBar: MatSnackBar
+  ) { }
+
+  get isCenter(): boolean {
+    return this.registerForm.get('center').value;
+  }
 
   registerForm: FormGroup;
   matcher = new MyErrorStateMatcher();
@@ -38,13 +50,10 @@ export class RegisterComponent implements OnInit {
     this.passwordConfirmValidator.bind(this)
   ]);
 
-  constructor(
-    private router: Router,
-    private identityService: IdentityService,
-    private snackBar: MatSnackBar
-  ) { }
+  selectedFile: ImageSnippet;
 
   ngOnInit() {
+    this.parseData();
     this.registerForm = new FormGroup({
       'center': new FormControl(false, []),
       'email': this.emailFormControl,
@@ -148,7 +157,46 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  get isCenter(): boolean {
-    return this.registerForm.get('center').value;
+
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    console.log(file);
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+    });
+    Tesseract.recognize(file, {lang: 'ron'})
+    .then((result) => {
+        console.log(result.text);
+    });
+    //reader.readAsDataURL(file);
   }
+
+  parseData(text = "IDROUGEORGESCU«BOGDAN<GABRIEL««« i↵AS993238<2ROU9607147M210714310352636↵↵") {
+    const t = text.replace(/[^a-z0-9]/gmi, " ").replace(/\s+/g, " ");
+    let tokens = t.split(' ');
+    let surname = tokens[0].slice(5);
+    let name = tokens[1] + " " + tokens[2];
+    let cnp = '';
+    if (tokens[tokens.length - 2].includes('M')) {
+      cnp = '1';
+    } else {
+      cnp = '2';
+    }
+    cnp += tokens[tokens.length - 2].slice(4, 10);
+    cnp += tokens[tokens.length - 2].slice(20, 26);
+    console.log(cnp);
+    console.log(surname);
+    console.log(name);
+
+
+    
+  }
+
+}
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
 }
