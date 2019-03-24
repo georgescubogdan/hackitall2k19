@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MouseEvent, LatLngLiteral } from '@agm/core';
 import { EventEmitter } from 'protractor';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatBottomSheet } from '@angular/material';
 import { QrDialogComponent } from '../qr-dialog/qr-dialog.component';
 import { DataService } from '../utils/data.service';
 import { User } from '../identity/user';
@@ -9,6 +9,7 @@ import { DonationRequest } from '../models/donation-request';
 import { Observable, identity } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { IdentityService } from '../identity/identity.service';
+import { DonationFormComponent } from '../donation-form/donation-form.component';
 
 @Component({
   selector: 'app-map',
@@ -35,15 +36,48 @@ export class MapComponent implements OnInit {
           return this.distanceBetweenTwoPoints(b.lat, b.lon, this.coords.lat, this.coords.lng) <= this.radius;
         });
     });
-    this.dataService.getDonationRequests().subscribe(r => {
-      this.requests = r;
-    });
-  }
-  ngOnInit(): void {
-    this.initMyData(true).then(a => {});    
   }
 
-  constructor(public dialog: MatDialog, private dataService: DataService, private identityService: IdentityService) {
+  categories = ['None', 'Food', 'Meds', 'Money', 'Volunteering', 'Clothes']
+  selectedCategory = 'None';
+
+  selectCategory(category) {
+    this.selectedCategory = category;
+  }
+
+  filterCenters(): User[] {
+    if (this.selectedCategory == 'None') {
+      return this.centers;
+    }
+
+    if (!this.centers) {
+      return [];
+    }
+
+    if (!this.requests) {
+      return [];
+    }
+
+
+    return this.centers.filter(center => {
+      let good = true;
+
+      let requests: DonationRequest[] = this.filterRequests(center.email);
+      good = good && requests.some(request => request.items.some(item => item.category.toLowerCase() === this.selectedCategory.toLowerCase()));
+
+      return good;
+    })
+  }
+
+  ngOnInit(): void {
+    this.initMyData(true).then(a => {});
+    this.dataService.getDonationRequests().subscribe(r => {
+      console.log(r);
+      this.requests = r;
+    }); 
+  }
+
+  constructor(public dialog: MatDialog, private dataService: DataService, private identityService: IdentityService, private bottomSheet: MatBottomSheet) {
 
   }
   // google maps zoom level
@@ -86,12 +120,12 @@ export class MapComponent implements OnInit {
   }
 
 
-  filterRequests(email) {
-    const temp = this.requests.find(r => {
+  filterRequests(email): DonationRequest[] {
+    const temp: DonationRequest[] = this.requests.filter(r => {
         return r.email === email;
       });
     if (temp !== undefined) {
-      return temp.items;
+      return temp;
     }
     return [];
   }
@@ -168,6 +202,10 @@ export class MapComponent implements OnInit {
 
   public donate(centru: User) {
     this.dataService.getPDF(this.identityService.userData, centru).then(a => a);
+  }
+
+  openBottomSheet() {
+    this.bottomSheet.open(DonationFormComponent);
   }
 }
 

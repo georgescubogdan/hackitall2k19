@@ -1,12 +1,16 @@
-<agm-map 
-[latitude]="lat"
-[longitude]="lng"
-[zoom]="zoom"
-[disableDefaultUI]="false"
-[zoomControl]="false"
-(mapClick)="mapClicked($event)">
-
-<agm-marker 
+<div class="row" style="height: 93vh;">
+  
+  <div class="col s12 m6 l8 right" [ngStyle.lt-sm]="{'height': '60vh'}" [ngStyle.gt-sm]="{'height': '93vh'}" style="padding: 0 !important;">
+    <agm-map 
+    style="height: 100%; width: 100%;"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    (mapClick)="mapClicked($event)">
+    
+    <agm-marker
     *ngFor="let m of markers; let i = index"
     (markerClick)="clickedMarker(m.label, i)"
     [latitude]="m.lat"
@@ -14,46 +18,74 @@
     [label]="m.label"
     [markerDraggable]="m.draggable"
     (dragEnd)="markerDragEnd(m, $event)">
-
-      <agm-info-window style="color: black !important">
-        {{m.title}}
-      </agm-info-window>
-
-</agm-marker>
-
-<agm-circle [latitude]="lat" [longitude]="lng" 
-[radius]="5000"
-[fillColor]="'red'"
-[circleDraggable]="true"
-[editable]="true"
-(radiusChange)="radiusChanged($event)"
-(dragEnd)="circleDragEnd($event)">
+    
+    <agm-info-window style="color: black !important">
+      {{m.title}}
+    </agm-info-window>
+    
+  </agm-marker>
+  
+  <agm-circle [latitude]="lat" [longitude]="lng" 
+  [radius]="5000"
+  [fillColor]="'red'"
+  [circleDraggable]="true"
+  [editable]="true"
+  (radiusChange)="radiusChanged($event)"
+  (dragEnd)="circleDragEnd($event)">
 </agm-circle>
 
 </agm-map>
+</div>
 
 
-<mat-accordion *ngIf="centers">
-  <mat-expansion-panel *ngFor="let center of centers">
-    <mat-expansion-panel-header>
-      <mat-panel-title style=" margin: auto;">
-        {{center.centerName}}
-        <!-- Data: {{donation.date | date : "dd.MM.yyyy"}} -->
-      </mat-panel-title>
-      <mat-panel-description>
-        <a class="center" [href]="'tel:' + center.phone">Tel: {{center.phone}}</a>
-
-        <a class="center" [href]="'mailto:' + center.email">Email: {{center.email}}</a>
-      </mat-panel-description>
-      <button mat-raised-button style="margin-right: 20px" color="primary" (click)="openDialog(center.lat, center.lon)">Directions</button>
-      <button mat-raised-button (click)="donate(center)" style="margin-right: 50px" color="primary">Donate 2%</button>
-    </mat-expansion-panel-header>
-    <div *ngIf="requests">
-      <mat-list  *ngFor="let item of filterRequests(center.email)">
-        <h6 mat-line>{{item.category}}</h6>
-        <p mat-line> {{item.description}} </p>
-      </mat-list>
-    </div>
-    
-  </mat-expansion-panel>
-</mat-accordion>
+<div class="col s12 m6 l4" *ngIf="centers">
+  <div style="margin: 10px 0;">
+      <mat-chip-list fxLayout="row" fxLayoutAlign="space-around center" >
+          <mat-chip *ngFor="let category of categories" (click)="selectCategory(category)" [style.background]="selectedCategory === category ? '#C2185B' : '#616161'">{{category}}</mat-chip>
+        </mat-chip-list>
+  </div>
+  <mat-card *ngFor="let center of filterCenters()">
+    <mat-card-header>
+      <mat-card-title>
+        <i style="margin-left: 20px;">{{ center.centerName }} - {{ distanceBetweenTwoPoints(coords.lat, coords.lng, center.lat, center.lon).toPrecision(2)  }} KM</i>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col s12 m8 l8" fxLayout="column" fxLayoutAlign="space-between start">
+          <a class="spaced" [href]="'tel:' + center.phone">Tel: {{center.phone}}</a>
+          <a class="spaced" [href]="'mailto:' + center.email">Email: {{center.email}}</a>
+        </div>
+        <div class="col s12 m4 l4">
+          <button mat-raised-button color="primary" (click)="openDialog(center.lat, center.lon)" class="col s12 m12 l12">Directions</button><br>
+          <button mat-raised-button (click)="donate(center)" style="margin-right: 50px" color="warn" class="col s12 m12 l12">Donate 2%</button>
+        </div>  
+      </div>
+      
+      <mat-accordion *ngIf="requests">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Your requests
+            </mat-panel-title>
+          </mat-expansion-panel-header>        
+          <mat-list>
+            <div *ngFor="let request of filterRequests(center.email)">
+              <div *ngFor="let item of request.items">   
+                <hr>         
+                <mat-list-item>Category: {{item.category.toUpperCase()}}</mat-list-item>
+                <mat-list-item *ngIf="item.description">Description: {{item.description}}</mat-list-item>
+                <mat-list-item *ngIf="item.sum">Amount: {{item.sum}} RON</mat-list-item>
+                <mat-list-item *ngIf="item.name">Name: {{item.name}}</mat-list-item>
+                <mat-list-item *ngIf="item.size">Size: {{item.size}}</mat-list-item>
+                <mat-list-item *ngIf="item.sex">Sex: {{item.sex}}</mat-list-item>
+                <mat-list-item *ngIf="item.type">Type: {{item.type}}</mat-list-item>
+              </div>
+            </div>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>

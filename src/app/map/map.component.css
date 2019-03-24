@@ -1,14 +1,22 @@
-agm-map {
-  height: 300px;
-}
-
-
 * {
   font-family: Lato;
+  margin: 0;
 }
 
 .center {
   margin: auto;
   width: 100%;
   color: white;
+}
+
+mat-expansion-panel {
+  margin-top: 10px;
+  background: #880E4F;
+}
+
+.spaced {
+  line-height: 36px;
+  padding: 0 16px;
+  color: white;
+  font-weight: bold;
 }
