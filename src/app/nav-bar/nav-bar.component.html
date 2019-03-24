@@ -6,8 +6,8 @@
       </button>
     </div>
       
-    <!-- <span class="welcome" *ngIf="email" fxHide.gt-sm="true">{{email}}</span> -->
-    <!-- <span class="welcome" *ngIf="email" fxHide.lt-md="true">Hello, {{email}}!</span> -->
+    <span class="welcome" *ngIf="authStatus" fxHide.gt-sm="true">Hello, {{authStatus.name}}!</span>
+    <span class="welcome" *ngIf="authStatus" fxHide.lt-md="true">Hello, {{authStatus.name}}!</span>
     <span class="fill-remaining-space"></span>
     <mat-icon fxHide.gt-sm="true" (click)="logout()" *ngIf="authStatus">meeting_room </mat-icon>
     

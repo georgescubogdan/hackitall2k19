@@ -21,8 +21,9 @@ import { BaseItem } from '../models/base-item';
 })
 export class MapComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      $("img[src$='google_gray.svg']").parent().parent().remove()
+    setInterval(() => {
+      $("img[src$='google_gray.svg']").parent().parent().remove();
+      $('.agm-info-window-content').style('color', 'black');
     }, 1000);
   }
 
