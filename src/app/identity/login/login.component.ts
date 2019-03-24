@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
       this.snackBar.open('Login successful. Redirecting...', 'Close', {
         duration: 2000,
       });
+      this.router.navigate(['/testmap']);
     }).catch(authState => {
       this.snackBar.open('Invalid login. Please check your user data.', 'Close', {
         duration: 2000,

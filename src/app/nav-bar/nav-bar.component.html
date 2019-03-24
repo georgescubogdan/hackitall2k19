@@ -12,10 +12,10 @@
     <mat-icon fxHide.gt-sm="true" (click)="logout()" *ngIf="authStatus">meeting_room </mat-icon>
     
     <div fxShow="true" fxHide.lt-md="true">
-      <a mat-button routerLink="/login">Login</a>
-      <a mat-button routerLink="/register">Register</a>
-      <a mat-button routerLink="/received-donations">Received Donations</a>
-      <a mat-button routerLink="/profile">Profile</a>
+      <a mat-button routerLink="/login" *ngIf="!authStatus">Login</a>
+      <a mat-button routerLink="/register" *ngIf="!authStatus">Register</a>
+      <a mat-button routerLink="/received-donations" *ngIf="authStatus">Received Donations</a>
+      <a mat-button routerLink="/profile" *ngIf="authStatus">Profile</a>
       <!-- <a mat-button routerLink="/charts">Charts</a>
       <a mat-button routerLink="/about">About</a> -->
       <button mat-raised-button (click)="logout()" *ngIf="authStatus">Logout</button>
@@ -25,10 +25,10 @@
   <mat-sidenav-container fxFlexFill class="example-container content">
     <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
-        <a mat-button routerLink="/login">Login</a>
-        <a mat-button routerLink="/register">Register</a>
-        <a mat-button routerLink="/received-donations">Received Donations</a>
-        <a mat-button routerLink="/profile">Profile</a>
+        <a mat-button routerLink="/login" *ngIf="!authStatus">Login</a>
+        <a mat-button routerLink="/register" *ngIf="!authStatus">Register</a>
+        <a mat-button routerLink="/received-donations" *ngIf="authStatus">Received Donations</a>
+        <a mat-button routerLink="/profile" *ngIf="authStatus">Profile</a>
         <!-- <a mat-button routerLink="/charts">Charts</a>
         <a mat-button routerLink="/about">About</a> -->
       </div>
