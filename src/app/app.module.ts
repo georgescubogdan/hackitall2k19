@@ -55,7 +55,7 @@ const firebaseConfig = {
     DonationConcludeComponent,
     MapComponent,
     QrDialogComponent,
-    EditProfileComponent
+    EditProfileComponent,
   ],
   entryComponents: [
     RequestFormComponent,

@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Donation } from '../models/donation';
 import { IdentityService } from '../identity/identity.service';
 import { BaseItem } from '../models/base-item';
+import { SpinnerService } from './spinner.service';
 
 const template: String = `<?xml version="1.0" encoding="UTF-8"?>
 <form1>
@@ -101,8 +102,9 @@ export class DataService {
   constructor(
     private db: AngularFireDatabase,
     private http: HttpClient,
-    private identityService: IdentityService
-  ){
+    private identityService: IdentityService,
+    private spinnerService: SpinnerService
+  ) {
     this._centreSubject = new ReplaySubject(1);
     this._requestsSubject = new ReplaySubject(1);
     this._donationsSubject = new ReplaySubject(1);
@@ -180,6 +182,7 @@ export class DataService {
 
   public getPDF(userData: User, institutionData: User): Promise<any> {
     return new Promise((resolve, reject) => {
+      this.spinnerService.ShowSpinner();
       let newTemplate = template;
       Object.keys(userData).forEach(key => {
         let value = userData[key];
@@ -204,7 +207,9 @@ export class DataService {
             anchor.download = `anexa.pdf`;
             anchor.href = blobUrl;
             anchor.click();
-      });
+            this.spinnerService.HideSpinner();
+            resolve(true);
+      }).catch(err => { reject(err); this.spinnerService.HideSpinner(); });
     });
   }
 }

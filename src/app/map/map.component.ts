@@ -167,7 +167,7 @@ export class MapComponent implements OnInit {
   }
 
   public donate(centru: User) {
-    this.dataService.getPDF(this.identityService.userData, centru).then(a => console.log(a));
+    this.dataService.getPDF(this.identityService.userData, centru).then(a => a);
   }
 }
 
