@@ -58,12 +58,15 @@ export class DataService {
     return this._donationsSubject.asObservable().pipe(map(donations => {
       return donations.filter(donation => {
         let result = true;
+        console.log(donation, "PULA IN CUR");
         if (!isNullOrUndefined(from)) {
-          result = result && donation.sender === from;
+          result = result && donation.sender == from;
         }
         if (!isNullOrUndefined(to)) {
-          result = result && donation.destination === to;
+          result = result && donation.destination == to;
         }
+
+        return result;
       })
     }));
   }
@@ -93,9 +96,10 @@ export class DataService {
     })
   }
 
-  public addDonation(requestData: Donation): Promise<any> {
+  public addDonation(requestData: any): Promise<any> {
+    console.log({...requestData, to: this.identityService.userData.email} as Donation);
     return new Promise<any>((resolve, reject) => {
-      this.db.list('/donations').push({...requestData, to: this.identityService.userData.email} as Donation).then(a => resolve(a)).catch(err => reject(err));
+      this.db.list('/donations').push({...requestData, destination: this.identityService.userData.email} as Donation).then(a => resolve(a)).catch(err => reject(err));
     })
   }
 

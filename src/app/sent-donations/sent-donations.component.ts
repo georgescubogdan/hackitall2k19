@@ -19,37 +19,6 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 })
 export class SentDonationsComponent implements OnInit {
   panelOpenState = false;
-
-  donations: Donation[] = [
-    {
-      date: Date.now(),
-      destination: "test address",
-      items: [
-        {
-          category: "books",
-          description: "sunt doar carti"
-        },
-        {
-          category: "mancare",
-          description: "doar orez"
-        }
-      ],
-    },
-    {
-      date: Date.now(),
-      destination: "test address 2",
-      items: [
-        {
-          category: "books",
-          description: "sunt doar carti"
-        },
-        {
-          category: "mancare",
-          description: "doar orez"
-        }
-      ],
-    }];
-
   constructor(
     private bottomSheet: MatBottomSheet,
     private identityService: IdentityService,
@@ -59,6 +28,7 @@ export class SentDonationsComponent implements OnInit {
 
   user: User = null;
   requests: DonationRequest[] = [];
+  donations: Donation[] = [];
 
   ngOnInit() {
     this.identityService.user.subscribe(user => {
@@ -68,6 +38,10 @@ export class SentDonationsComponent implements OnInit {
         this.dataService.getDonationRequests(user.email).subscribe(requests => {
           this.requests = requests;
           console.log(this.requests);
+        });
+        this.dataService.getDonations(null, user.email).subscribe(donations => {
+          this.donations = donations;
+          console.log(this.donations);
         });
       }
     });
