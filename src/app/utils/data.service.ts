@@ -26,7 +26,7 @@ const template: String = `<?xml version="1.0" encoding="UTF-8"?>
          <ID_PRENUME>{name}</ID_PRENUME>
          <cif>{id}</cif>
          <ID_STRADA>{street}</ID_STRADA>
-         <ID_NR>{streetnumber}</ID_NR>
+         <ID_NR>{streetNumber}</ID_NR>
          <ID_BL>{building}</ID_BL>
          <ID_SC>{block}</ID_SC>
          <ID_ET/>
@@ -54,10 +54,10 @@ const template: String = `<?xml version="1.0" encoding="UTF-8"?>
                <D_SUMA_PLATITA />
             </S_bursa>
             <S_entit>
-               <D_CIF_ENTIT>{cif_dest}</D_CIF_ENTIT>
+               <D_CIF_ENTIT>{fic_dest}</D_CIF_ENTIT>
                <ENTIT_IBAN>{iban_dest}</ENTIT_IBAN>
                <ENTIT_SUMA />
-               <D_DENUMIRE_ENTIT>{den}</D_DENUMIRE_ENTIT>
+               <D_DENUMIRE_ENTIT>{centerName_dest}</D_DENUMIRE_ENTIT>
                <cota>1</cota>
             </S_entit>
             <Entitate>1</Entitate>
@@ -178,12 +178,16 @@ export class DataService {
 
   // public get
 
-  public getPDF(userData: User, institutionData): Promise<any> {
+  public getPDF(userData: User, institutionData: User): Promise<any> {
     return new Promise((resolve, reject) => {
       let newTemplate = template;
       Object.keys(userData).forEach(key => {
         let value = userData[key];
         newTemplate = newTemplate.replace(`{${key}}`, value);
+      });
+      Object.keys(institutionData).forEach(key => {
+        let value = userData[key];
+        newTemplate = newTemplate.replace(`{${key}_dest}`, value);
       });
       this.http.post('https://reportinggen.azurewebsites.net/api/values', newTemplate, { 
           responseType: "blob",

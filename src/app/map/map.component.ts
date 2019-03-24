@@ -23,10 +23,10 @@ export class MapComponent implements OnInit {
 
   async initMyData(first = true) {
     if (first) {
-      let a = await this.identity.findMe();
+      let a = await this.identityService.findMe();
       this.coords = {lat: a.lat, lng: a.lon};
     }
-    let c = await this.data.getCentre();
+    let c = await this.dataService.getCentre();
     c = this.sortCenters(c, this.coords, this.radius);
     c.subscribe(comp => {
       comp.forEach(ce => this.markers.push({lat: ce.lat, lng: ce.lon, draggable: false, title: ce.centerName}));
@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
           return this.distanceBetweenTwoPoints(b.lat, b.lon, this.coords.lat, this.coords.lng) <= this.radius;
         });
     });
-    this.data.getDonationRequests().subscribe(r => {
+    this.dataService.getDonationRequests().subscribe(r => {
       this.requests = r;
     });
   }
@@ -43,7 +43,7 @@ export class MapComponent implements OnInit {
     this.initMyData(true).then(a => {});    
   }
 
-  constructor(public dialog: MatDialog, private data: DataService, private identity: IdentityService) {
+  constructor(public dialog: MatDialog, private dataService: DataService, private identityService: IdentityService) {
 
   }
   // google maps zoom level
@@ -164,6 +164,10 @@ export class MapComponent implements OnInit {
           return this.distanceBetweenTwoPoints(a.lat, a.lon, startPos.lat, startPos.lng) <= maxDist;
         }); })
       );
+  }
+
+  public donate(centru: User) {
+    this.dataService.getPDF(this.identityService.userData, centru).then(a => console.log(a));
   }
 }
 
