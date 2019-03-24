@@ -30,7 +30,7 @@ export class MapComponent implements OnInit {
     let c = await this.dataService.getCentre();
     c = this.sortCenters(c, this.coords, this.radius);
     c.subscribe(comp => {
-      comp.forEach(ce => this.markers.push({lat: ce.lat, lng: ce.lon, draggable: false, title: ce.centerName}));
+      comp.forEach(ce => this.markers.push({lat: ce.lat, lng: ce.lon, draggable: false, title: ce.centerName, markerClickable: false}));
       this.centers = comp.filter(
         b => {
           return this.distanceBetweenTwoPoints(b.lat, b.lon, this.coords.lat, this.coords.lng) <= this.radius;
@@ -135,11 +135,11 @@ export class MapComponent implements OnInit {
   }
 
   mapClicked($event: MouseEvent) {
-    this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      draggable: true
-    });
+    // this.markers.push({
+    //   lat: $event.coords.lat,
+    //   lng: $event.coords.lng,
+    //   draggable: true
+    // });
   }
 
   markerDragEnd(m: Marker, $event: MouseEvent) {
@@ -216,4 +216,5 @@ interface Marker {
   label?: string;
   draggable: boolean;
   title?: string;
+  markerClickable: boolean;
 }
