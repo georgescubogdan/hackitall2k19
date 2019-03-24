@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatBottomSheetRef } from '@angular/material';
+import { BaseItem } from '../models/base-item';
+import { DataService } from '../utils/data.service';
 
 @Component({
   selector: 'app-donation-form',
@@ -8,7 +10,6 @@ import { MatBottomSheetRef } from '@angular/material';
   styleUrls: ['./donation-form.component.css']
 })
 export class DonationFormComponent implements OnInit {
-
   categories = ['food', 'money', 'clothes', 'meds', 'volunteering'];
   foodTypes = ['perisable', 'nonperisable'];
   sexes = ['male', 'female'];
@@ -54,7 +55,7 @@ export class DonationFormComponent implements OnInit {
     'medName': new FormControl(null)
   });
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<DonationFormComponent>) { }
+  constructor(private bottomSheetRef: MatBottomSheetRef<DonationFormComponent>, private dataService: DataService) { }
 
   ngOnInit() {
   }
@@ -65,8 +66,16 @@ export class DonationFormComponent implements OnInit {
 
   onSubmit(event: MouseEvent): void {
     if (this.donationForm.valid) {
-      console.log(this.donationForm);
+      const response: BaseItem = {
+        description: '',
+        category: this.donationForm.get('category').value,
+        type: this.donationForm.get('foodType').value,
+        sex: this.donationForm.get('sex').value,
+        size: this.donationForm.get('clothSize').value,
+        name: this.donationForm.get('medName').value,
+      }
+
+      this.dataService.filter = response;
     }
   }
-
 }

@@ -154,7 +154,7 @@ export class DataService {
       
       this._requestsObservable.subscribe(data => this._requestsSubject.next(data));
     }
-    if (isNullOrUndefined(email)) {
+    if (!isNullOrUndefined(email)) {
       return this._requestsSubject.asObservable().pipe(map(requests => {
         return requests.filter(request => {
           request.email === email;
@@ -212,4 +212,8 @@ export class DataService {
       }).catch(err => { reject(err); this.spinnerService.HideSpinner(); });
     });
   }
+
+
+  public filter: BaseItem;
+
 }

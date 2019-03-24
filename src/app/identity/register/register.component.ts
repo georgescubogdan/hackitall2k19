@@ -80,9 +80,9 @@ export class RegisterComponent implements OnInit {
     });
 
     // Clear validators, for dev only
-    Object.keys(this.registerForm.controls).forEach(key => {
-      this.registerForm.get(key).clearValidators();
-    });
+    // Object.keys(this.registerForm.controls).forEach(key => {
+    //   this.registerForm.get(key).clearValidators();
+    // });
 
     this.registerForm.get('center').valueChanges.subscribe(value => {
       console.log(value);
@@ -157,19 +157,18 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-
   processFile(imageInput: any) {
     const file: File = imageInput.files[0];
     console.log(file);
-    const reader = new FileReader();
+    // const reader = new FileReader();
 
-    reader.addEventListener('load', (event: any) => {
+    // reader.addEventListener('load', (event: any) => {
 
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-    });
-    Tesseract.recognize(file, {lang: 'ron'})
-    .then((result) => {
-        console.log(result.text);
+    //   this.selectedFile = new ImageSnippet(event.target.result, file);
+    // });
+    Tesseract.recognize(file)
+    .then(function(result) {
+        console.log(result);
     });
     //reader.readAsDataURL(file);
   }
