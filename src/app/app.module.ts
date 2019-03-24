@@ -29,6 +29,8 @@ import { MapComponent } from './map/map.component';
 import { QrDialogComponent } from './qr-dialog/qr-dialog.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc",
@@ -79,7 +81,8 @@ const firebaseConfig = {
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
       apiKey: 'AIzaSyDIE5_BmQL05UYC9kMWaMuB8PoU8IdQ_Xc'
     }),
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     IdentityService,
