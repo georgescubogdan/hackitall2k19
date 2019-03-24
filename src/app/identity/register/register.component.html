@@ -27,7 +27,7 @@
           [errorStateMatcher]="matcher">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Id" formControlName="id"
+        <input matInput placeholder="CNP" formControlName="id"
           [errorStateMatcher]="matcher">
       </mat-form-field>
       <mat-form-field class="full-width" *ngIf="!isCenter">
@@ -92,7 +92,7 @@
             [errorStateMatcher]="matcher">
         </mat-form-field>
         <mat-form-field class="full-width">
-          <input matInput placeholder="Fical code" formControlName="fic"
+          <input matInput placeholder="Fiscal code" formControlName="fic"
             [errorStateMatcher]="matcher">
         </mat-form-field>
       </div>
@@ -119,7 +119,7 @@
             [errorStateMatcher]="matcher">
         </mat-form-field>
         <mat-form-field class="desktop-width">
-          <input matInput placeholder="PIN" formControlName="id"
+          <input matInput placeholder="CNP" formControlName="id"
             [errorStateMatcher]="matcher">
         </mat-form-field>
       </div>
@@ -128,14 +128,14 @@
           <input matInput placeholder="Name" formControlName="name"
             [errorStateMatcher]="matcher">
         </mat-form-field>
-        <mat-form-field class="desktop-width">
-          <input matInput placeholder="Surname" formControlName="surname"
-            [errorStateMatcher]="matcher">
-        </mat-form-field>        
         <mat-form-field class="father-init-width" *ngIf="!isCenter">
           <input matInput placeholder="FI" formControlName="fatherInitial"
             [errorStateMatcher]="matcher">
         </mat-form-field>
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Surname" formControlName="surname"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>        
       </div>
       <div fxLayout="row" fxLayoutAlign="space-around center" >
         <mat-form-field class="desktop-width">
