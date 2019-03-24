@@ -128,14 +128,14 @@
           <input matInput placeholder="Name" formControlName="name"
             [errorStateMatcher]="matcher">
         </mat-form-field>
-        <mat-form-field class="desktop-width">
-          <input matInput placeholder="Surname" formControlName="surname"
-            [errorStateMatcher]="matcher">
-        </mat-form-field>        
         <mat-form-field class="father-init-width" *ngIf="!isCenter">
           <input matInput placeholder="FI" formControlName="fatherInitial"
             [errorStateMatcher]="matcher">
         </mat-form-field>
+        <mat-form-field class="desktop-width">
+          <input matInput placeholder="Surname" formControlName="surname"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>        
       </div>
       <div fxLayout="row" fxLayoutAlign="space-around center" >
         <mat-form-field class="desktop-width">
