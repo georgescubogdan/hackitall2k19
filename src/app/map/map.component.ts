@@ -9,6 +9,7 @@ import { DonationRequest } from '../models/donation-request';
 import { Observable, identity } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { IdentityService } from '../identity/identity.service';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -17,60 +18,61 @@ import { IdentityService } from '../identity/identity.service';
 export class MapComponent implements OnInit {
   centers: User[];
   requests: DonationRequest[];
-  radius: number;
+  radius: number = 5;
   coords: LatLngLiteral;
 
-  async initMyData() {
-    let a = await this.identity.findMe();
-    console.log(a);
-    this.coords = {lat: a.lat, lng: a.lon};
+  async initMyData(first = true) {
+    if (first) {
+      let a = await this.identity.findMe();
+      this.coords = {lat: a.lat, lng: a.lon};
+    }
     let c = await this.data.getCentre();
     c = this.sortCenters(c, this.coords, this.radius);
     c.subscribe(comp => {
-      console.log(comp);
-      this.centers = comp;
+      comp.forEach(ce => this.markers.push({lat: ce.lat, lng: ce.lon, draggable: false, title: ce.centerName}));
+      this.centers = comp.filter(
+        b => {
+          return this.distanceBetweenTwoPoints(b.lat, b.lon, this.coords.lat, this.coords.lng) <= this.radius;
+        });
     });
-    console.log(this.centers);
     this.data.getDonationRequests().subscribe(r => {
       this.requests = r;
     });
   }
   ngOnInit(): void {
-    this.initMyData().then(a => {});
-
-    
+    this.initMyData(true).then(a => {});    
   }
 
   constructor(public dialog: MatDialog, private data: DataService, private identity: IdentityService) {
 
   }
   // google maps zoom level
-  zoom = 8;
+  zoom = 12;
 
   // initial center position for the map
-  lat = 51.673858;
-  lng = 7.815982;
+  lat = 44.441049400000004;
+  lng = 26.0513992;
 
-  markers: Marker[] = [
-    {
-      lat: 51.673858,
-      lng: 7.815982,
-      label: 'A',
-      draggable: true
-    },
-    {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: 'B',
-      draggable: false
-    },
-    {
-      lat: 51.723858,
-      lng: 7.895982,
-      label: 'C',
-      draggable: true
-    }
-  ];
+  markers: Marker[] = [];
+  //   {
+  //     lat: 44.404425,
+  //     lng: 26.097031,
+  //     label: 'A',
+  //     draggable: true
+  //   },
+  //   {
+  //     lat: 44.443651,
+  //     lng: 26.035944,
+  //     label: 'B',
+  //     draggable: false
+  //   },
+  //   {
+  //     lat: 44.448190,
+  //     lng: 26.140451,
+  //     label: 'C',
+  //     draggable: true
+  //   }
+  // ];
 
   openDialog(lat: number, lon: number): void {
     const dialogRef = this.dialog.open(QrDialogComponent, {
@@ -95,7 +97,7 @@ export class MapComponent implements OnInit {
   }
 
   clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`);
+    //console.log(`clicked the marker: ${label || index}`);
   }
 
   mapClicked($event: MouseEvent) {
@@ -107,19 +109,22 @@ export class MapComponent implements OnInit {
   }
 
   markerDragEnd(m: Marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
+    //console.log('dragEnd', m, $event);
   }
 
   circleDragEnd($event: MouseEvent) {
     // EventEmitter<LatLngLiteral>
-    console.log('centerChanged', $event);
+    //console.log('centerChanged', $event);
     this.coords = $event.coords as LatLngLiteral;
+    this.initMyData(false).then(a => {});
   }
 
   radiusChanged($event) {
     // EventEmitter<number> in meters
-    console.log('radiusChanged', $event);
+    //console.log('radiusChanged', $event);
     this.radius = $event as number;
+    this.radius /= 1000;
+    this.initMyData(false).then(a => {});  
   }
 
   distanceBetweenTwoPoints(lat1, lon1, lat2, lon2, unit="K") {
@@ -156,9 +161,8 @@ export class MapComponent implements OnInit {
       ).pipe(
         tap(c => {
           c.filter(a => {
-          console.log(this.distanceBetweenTwoPoints(a.lat, a.lon, startPos.lat, startPos.lng));
           return this.distanceBetweenTwoPoints(a.lat, a.lon, startPos.lat, startPos.lng) <= maxDist;
-        });})
+        }); })
       );
   }
 }
@@ -169,4 +173,5 @@ interface Marker {
   lng: number;
   label?: string;
   draggable: boolean;
+  title?: string;
 }

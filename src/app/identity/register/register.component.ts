@@ -71,9 +71,9 @@ export class RegisterComponent implements OnInit {
     });
 
     // Clear validators, for dev only
-    // Object.keys(this.registerForm.controls).forEach(key => {
-    //   this.registerForm.get(key).clearValidators();
-    // });
+    Object.keys(this.registerForm.controls).forEach(key => {
+      this.registerForm.get(key).clearValidators();
+    });
 
     this.registerForm.get('center').valueChanges.subscribe(value => {
       console.log(value);
