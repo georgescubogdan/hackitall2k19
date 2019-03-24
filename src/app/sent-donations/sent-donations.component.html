@@ -2,7 +2,7 @@
 <div *ngIf="user" fxHide.gt-sm="true" fxHide.sm="true" class="mobile-div">
   <mat-card class="mobile-card">
     <mat-accordion>
-      <mat-expansion-panel class="profile-panel" *ngFor="let donation of donations">
+      <mat-expansion-panel class="profile-panel">
         <mat-expansion-panel-header>
           <mat-panel-title class="title">
             Your profile - {{user.center ? 'Center' : 'Donor'}}
@@ -44,7 +44,7 @@
       <button class="mobile-button" mat-raised-button (click)="edit()" color="primary">Edit Profile</button>    
     </mat-card-actions>    
     <mat-card-actions *ngIf="!user.center">
-      <button class="mobile-button" mat-raised-button (click)="donate()" color="warm">Donate</button>    
+      <button class="mobile-button" mat-raised-button (click)="donate()" color="warn">Donate</button>    
     </mat-card-actions>    
     <mat-card-actions *ngIf="user.center">
       <button class="mobile-button" mat-raised-button (click)="addReceivedDonation()" color="primary">Add a received donation</button>   
