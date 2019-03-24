@@ -39,3 +39,22 @@ mat-card-actions {
 .mobile-card {
     min-height: 93vh;
 }
+
+.user-details {
+    width: 50%;
+    margin: 0 10vw;
+}
+
+.desktop-title {
+    text-align: left;
+}
+
+.desktop-main-title {
+    text-align: center;
+    font-size: 30px;
+}
+
+.desktop-button {
+    min-width: 15%;
+    margin: 0 8px !important;
+}
