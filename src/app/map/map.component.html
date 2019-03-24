@@ -66,13 +66,14 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Your requests
+              Requests
             </mat-panel-title>
           </mat-expansion-panel-header>        
           <mat-list>
             <div *ngFor="let request of filterRequests(center.email)">
               <div *ngFor="let item of request.items">   
-                <hr>         
+                <hr>
+                <span class="material-icons right" (click)="removeItem(request, item)">close</span>
                 <mat-list-item>Category: {{item.category.toUpperCase()}}</mat-list-item>
                 <mat-list-item *ngIf="item.description">Description: {{item.description}}</mat-list-item>
                 <mat-list-item *ngIf="item.sum">Amount: {{item.sum}} RON</mat-list-item>

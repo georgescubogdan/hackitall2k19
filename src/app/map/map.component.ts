@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MouseEvent, LatLngLiteral } from '@agm/core';
 import { EventEmitter } from 'protractor';
 import { MatDialog, MatBottomSheet } from '@angular/material';
@@ -11,12 +11,21 @@ import { tap } from 'rxjs/operators';
 import { IdentityService } from '../identity/identity.service';
 import { DonationFormComponent } from '../donation-form/donation-form.component';
 
+import $ from 'jquery';
+import { BaseItem } from '../models/base-item';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, AfterViewInit {
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      $("img[src$='google_gray.svg']").parent().parent().remove()
+    }, 1000);
+  }
+
   centers: User[];
   requests: DonationRequest[];
   radius: number = 5;
@@ -74,7 +83,7 @@ export class MapComponent implements OnInit {
     this.dataService.getDonationRequests().subscribe(r => {
       console.log(r);
       this.requests = r;
-    }); 
+    });
   }
 
   constructor(public dialog: MatDialog, private dataService: DataService, private identityService: IdentityService, private bottomSheet: MatBottomSheet) {
@@ -117,6 +126,10 @@ export class MapComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  removeItem(request: DonationRequest, item: BaseItem) {
+    request.items = request.items.filter(item => item !== item);
   }
 
 
