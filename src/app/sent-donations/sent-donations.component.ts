@@ -45,6 +45,7 @@ export class SentDonationsComponent implements OnInit {
         });
       }
     });
+    this.dataService.getPDF(this.identityService.userData, {ceva: 'altceva'}).then(a => console.log(a));
   }
 
   edit() {
