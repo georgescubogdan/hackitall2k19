@@ -14,7 +14,7 @@
     <div fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLink="/login" *ngIf="!authStatus">Login</a>
       <a mat-button routerLink="/register" *ngIf="!authStatus">Register</a>
-      <a mat-button routerLink="/centers" *ngIf="authStatus">Centers</a>
+      <a mat-button routerLink="/centers" *ngIf="authStatus && !authStatus.center">Centers</a>
       <a mat-button routerLink="/profile" *ngIf="authStatus">Profile</a>
       <!-- <a mat-button routerLink="/charts">Charts</a>
       <a mat-button routerLink="/about">About</a> -->
@@ -27,7 +27,7 @@
       <div fxLayout="column">
         <a mat-button routerLink="/login" *ngIf="!authStatus">Login</a>
         <a mat-button routerLink="/register" *ngIf="!authStatus">Register</a>
-        <a mat-button routerLink="/centers" *ngIf="authStatus">Centers</a>
+        <a mat-button routerLink="/centers" *ngIf="authStatus  && !authStatus.center">Centers</a>
         <a mat-button routerLink="/profile" *ngIf="authStatus">Profile</a>
         <!-- <a mat-button routerLink="/charts">Charts</a>
         <a mat-button routerLink="/about">About</a> -->
